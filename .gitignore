@@ -1,0 +1,6 @@
+results_*/
+actors_*/
+logs_*/
+*.pt
+__pycache__/
+*.pyc
