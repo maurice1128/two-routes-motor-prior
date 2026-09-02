@@ -1,0 +1,107 @@
+{
+ "checkpoint": "prior_myo.pt",
+ "k": 6,
+ "n_traj": 1000,
+ "eval_seed": 999,
+ "babble": [
+  {
+   "k": 1,
+   "qpos_rms_rad": 0.0021135914139449596,
+   "qpos_rms_mrad": 2.1135914139449596,
+   "qpos_rms_deg": 0.12109986763413431,
+   "persistence_mrad": 17.541471868753433,
+   "full_state_rms": 0.06959716230630875
+  },
+  {
+   "k": 2,
+   "qpos_rms_rad": 0.006334432866424322,
+   "qpos_rms_mrad": 6.334432866424322,
+   "qpos_rms_deg": 0.36293626885507,
+   "persistence_mrad": 69.84087824821472,
+   "full_state_rms": 0.09373781830072403
+  },
+  {
+   "k": 3,
+   "qpos_rms_rad": 0.010943755507469177,
+   "qpos_rms_mrad": 10.943755507469177,
+   "qpos_rms_deg": 0.6270310026010343,
+   "persistence_mrad": 142.19380915164948,
+   "full_state_rms": 0.09852588176727295
+  },
+  {
+   "k": 4,
+   "qpos_rms_rad": 0.015426534228026867,
+   "qpos_rms_mrad": 15.426534228026867,
+   "qpos_rms_deg": 0.883875303780045,
+   "persistence_mrad": 219.51285004615784,
+   "full_state_rms": 0.11704160273075104
+  },
+  {
+   "k": 5,
+   "qpos_rms_rad": 0.01933831162750721,
+   "qpos_rms_mrad": 19.33831162750721,
+   "qpos_rms_deg": 1.1080036391649293,
+   "persistence_mrad": 292.2586500644684,
+   "full_state_rms": 0.13653092086315155
+  },
+  {
+   "k": 6,
+   "qpos_rms_rad": 0.02266201749444008,
+   "qpos_rms_mrad": 22.66201749444008,
+   "qpos_rms_deg": 1.2984379576830531,
+   "persistence_mrad": 356.41875863075256,
+   "full_state_rms": 0.1297302544116974
+  }
+ ],
+ "on_policy": [
+  {
+   "k": 1,
+   "qpos_rms_rad": 0.001843461417593062,
+   "qpos_rms_mrad": 1.843461417593062,
+   "qpos_rms_deg": 0.10562255892328626,
+   "persistence_mrad": 54.79962378740311,
+   "full_state_rms": 0.05772783234715462
+  },
+  {
+   "k": 2,
+   "qpos_rms_rad": 0.005273112561553717,
+   "qpos_rms_mrad": 5.273112561553717,
+   "qpos_rms_deg": 0.3021270946744465,
+   "persistence_mrad": 110.61210930347443,
+   "full_state_rms": 0.08956941962242126
+  },
+  {
+   "k": 3,
+   "qpos_rms_rad": 0.010367706418037415,
+   "qpos_rms_mrad": 10.367706418037415,
+   "qpos_rms_deg": 0.5940258209842402,
+   "persistence_mrad": 163.76344859600067,
+   "full_state_rms": 0.1655328869819641
+  },
+  {
+   "k": 4,
+   "qpos_rms_rad": 0.01828162372112274,
+   "qpos_rms_mrad": 18.28162372112274,
+   "qpos_rms_deg": 1.0474598818665841,
+   "persistence_mrad": 209.88616347312927,
+   "full_state_rms": 0.15468797087669373
+  },
+  {
+   "k": 5,
+   "qpos_rms_rad": 0.024860132485628128,
+   "qpos_rms_mrad": 24.860132485628128,
+   "qpos_rms_deg": 1.4243806695625645,
+   "persistence_mrad": 245.68164348602295,
+   "full_state_rms": 0.14866311848163605
+  },
+  {
+   "k": 6,
+   "qpos_rms_rad": 0.029897602275013924,
+   "qpos_rms_mrad": 29.897602275013924,
+   "qpos_rms_deg": 1.7130064279190262,
+   "persistence_mrad": 267.23822951316833,
+   "full_state_rms": 0.203962504863739
+  }
+ ],
+ "on_policy_actor": "actors_video/prior_actor.pt"
+}
