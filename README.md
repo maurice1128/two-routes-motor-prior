@@ -27,15 +27,20 @@ src/                     the study proper
   run_reach.py           entry point; one function runs one condition at one seed
   sac_dyna.py            SAC with the short-horizon Dyna loop
   world_model.py         the forward model and its training
-  imagine_pretrain.py    task-agnostic OU-noise babbling; writes the frozen prior
+  collect_babble.py      task-agnostic Ornstein-Uhlenbeck babbling
+  build_prior.py         builds one frozen prior and measures its open-loop error
+  build_prior_sizes.py   the same, swept over babble budgets
+  imagine_pretrain.py    imagination-only pretraining
   train_teacher2.py      trains a teacher from blank for 30k rewarded steps
   myo_env.py             myoElbow wrapper
   myofinger_env.py       myoFinger wrapper
   myohand_env.py         myoHand wrapper
-  arm_env.py             the toy planar arm used in pre-study pilots
+  arm_env.py             body dispatcher, selected by the WM_BODY env var
 
 launchers/               the invocations behind each reported condition
 analysis/                recomputation, statistics and figures
+  measure_elbow_prior.py the elbow prior's open-loop error on both distributions
+records/                 outputs of the two reproductions below
 RECOMPUTED.md            the recomputation register the paper cites
 ```
 
@@ -58,6 +63,43 @@ Each run writes one JSON per seed: `{"step", "eval_return", "eval_dist", "alpha"
 `analysis/make_figs.py` verifies every plotted contrast against that register before writing an image, with four train-target `coach(anneal) − blank` cells the exception — they are not in the register and are flagged as such.
 
 ---
+
+## Reproducing the elbow prior
+
+The paper reports that no build or open-loop-evaluation transcript survives for
+`prior_myo.pt`, the frozen model every myoElbow `prior`, `randprior` and
+`priorcoach` run loads. The checkpoint survived, so both the figure and the
+budget are recoverable from the artefact. Both reproductions are here.
+
+**Its open-loop accuracy**, on the babble distribution the paper measured and on
+the on-policy distribution it did not:
+
+```bash
+WM_BODY=myoelbow python analysis/measure_elbow_prior.py
+```
+
+Five-step qpos RMS is 19.34 mrad on babble, reproducing the ~19 mrad the paper
+carries, and 24.86 mrad on-policy. At the three-step horizon the Dyna loop uses,
+the two are 10.94 and 10.37, within 5% of each other. The on-policy rollouts are
+driven by a single-seed agent, so that column is n = 1 in the policy.
+
+**Its babble budget**, which the paper had called unquantified:
+
+```bash
+WM_BODY=myoelbow python src/build_prior_sizes.py prior_myo_sweep prior_myo_sizes.json
+```
+
+The 10^5 model comes out **bit-identical** to `prior_myo.pt` — equal element by
+element across all 71,688 parameters, with the four stored normalizer statistics
+matching — so the elbow budget is 10^5, against 2×10^5 on myoFinger and 3×10^5
+on myoHand. Neighbouring budgets are not close: 3×10^4 gives 0.02518 rad at five
+steps and 2×10^5 gives 0.00766, against the checkpoint's 0.01934.
+
+A reproduction is not a transcript. It shows that a committed script at its own
+defaults yields the artefact today; it does not record what was run on the day,
+and it fixes seed 0, hidden 256 and 40 epochs because the script does.
+
+Outputs of both are in `records/`.
 
 ## What is not here
 
