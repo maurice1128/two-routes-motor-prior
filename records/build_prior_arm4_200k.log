@@ -1,0 +1,23 @@
+== collecting babble (task-agnostic) ==
+collected 200000 transitions in 38.6s
+qpos coverage: [-0.72 -1.66] -> [0.97 0.22]
+== training world model ==
+  ep  0 val_norm_mse 0.0732
+  ep  5 val_norm_mse 0.0315
+  ep 10 val_norm_mse 0.0229
+  ep 15 val_norm_mse 0.0170
+  ep 20 val_norm_mse 0.0143
+  ep 25 val_norm_mse 0.0111
+  ep 30 val_norm_mse 0.0098
+  ep 35 val_norm_mse 0.0077
+  ep 39 val_norm_mse 0.0074
+train time 72.3s
+== k-step open-loop eval (held-out rollouts) ==
+  k=1: qpos RMS 0.0003 rad (persist 0.0022)  |  full-state RMS 0.0076
+  k=2: qpos RMS 0.0004 rad (persist 0.0068)  |  full-state RMS 0.0079
+  k=3: qpos RMS 0.0006 rad (persist 0.0120)  |  full-state RMS 0.0073
+  k=4: qpos RMS 0.0008 rad (persist 0.0176)  |  full-state RMS 0.0069
+  k=5: qpos RMS 0.0009 rad (persist 0.0232)  |  full-state RMS 0.0068
+  k=6: qpos RMS 0.0011 rad (persist 0.0288)  |  full-state RMS 0.0066
+  k=5 fingertip position error: mean 0.3 mm  median 0.3 mm
+saved prior -> C:\Users\maurice\AppData\Local\Temp/rebuild_prior_arm4.pt

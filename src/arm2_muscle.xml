@@ -1,0 +1,72 @@
+<mujoco model="arm2_muscle">
+  <!-- Planar 2-link arm actuated by 4 Hill-type muscles (agonist/antagonist per joint).
+       Built for the world-model-as-prior study: small, fast-stepping, fully controlled. -->
+  <compiler angle="radian" autolimits="true"/>
+  <option timestep="0.002" integrator="implicitfast"/>
+
+  <default>
+    <joint type="hinge" axis="0 0 1" damping="0.2" limited="true"/>
+    <geom type="capsule" size="0.03" rgba="0.7 0.7 0.75 1" density="800"/>
+    <site size="0.012" rgba="0.9 0.3 0.3 1"/>
+    <!-- Hill-type muscle defaults -->
+    <muscle ctrllimited="true" ctrlrange="0 1"/>
+    <tendon width="0.008" rgba="0.9 0.5 0.4 1"/>
+  </default>
+
+  <worldbody>
+    <light pos="0 0 2"/>
+    <geom name="floor" type="plane" pos="0 0 -1" size="2 2 0.1" rgba="0.3 0.3 0.35 1"/>
+
+    <!-- shoulder mounting sites for muscle attachment (fixed to world) -->
+    <site name="s_up"   pos="0 0.08 0"/>
+    <site name="s_down" pos="0 -0.08 0"/>
+
+    <body name="upper" pos="0 0 0">
+      <joint name="shoulder" range="-2.0 2.0"/>
+      <geom fromto="0 0 0 0.25 0 0"/>
+      <!-- shoulder muscle insertion sites on the upper-arm -->
+      <site name="u_up"   pos="0.05 0.05 0"/>
+      <site name="u_down" pos="0.05 -0.05 0"/>
+      <!-- elbow origin sites on the upper arm -->
+      <site name="ue_up"   pos="0.20 0.05 0"/>
+      <site name="ue_down" pos="0.20 -0.05 0"/>
+
+      <body name="fore" pos="0.25 0 0">
+        <joint name="elbow" range="-2.5 0.2"/>
+        <geom fromto="0 0 0 0.22 0 0"/>
+        <!-- elbow muscle insertion sites on the forearm -->
+        <site name="f_up"   pos="0.05 0.045 0"/>
+        <site name="f_down" pos="0.05 -0.045 0"/>
+        <!-- fingertip -->
+        <site name="tip" pos="0.22 0 0" size="0.02" rgba="0.2 0.8 0.3 1"/>
+      </body>
+    </body>
+
+    <!-- reach target (mocap-free, set via qpos-independent site by moving this body in code) -->
+    <body name="target" mocap="true" pos="0.3 0.2 0">
+      <site name="target_site" pos="0 0 0" size="0.025" rgba="0.2 0.4 0.9 0.6"/>
+    </body>
+  </worldbody>
+
+  <tendon>
+    <spatial name="t_sh_flex">
+      <site site="s_up"/><site site="u_up"/>
+    </spatial>
+    <spatial name="t_sh_ext">
+      <site site="s_down"/><site site="u_down"/>
+    </spatial>
+    <spatial name="t_el_flex">
+      <site site="ue_up"/><site site="f_up"/>
+    </spatial>
+    <spatial name="t_el_ext">
+      <site site="ue_down"/><site site="f_down"/>
+    </spatial>
+  </tendon>
+
+  <actuator>
+    <muscle name="sh_flex" tendon="t_sh_flex"/>
+    <muscle name="sh_ext"  tendon="t_sh_ext"/>
+    <muscle name="el_flex" tendon="t_el_flex"/>
+    <muscle name="el_ext"  tendon="t_el_ext"/>
+  </actuator>
+</mujoco>
