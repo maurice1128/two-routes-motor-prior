@@ -105,11 +105,11 @@ def main():
               hold=4.5)
     f += card(["The drop after withdrawal"],
               ["Control: keep the imitation term, but point it at a frozen copy of the student.",
-               "After longer attachment, most of the drop is the removed term, not lost knowledge."],
+               "On the finger, after longer attachment, most of the drop is the removed term."],
               hold=5.0)
     f += image_card(os.path.join(FIGS, "dip_slim.png"),
                     "Blue: lost teacher knowledge.  Red: the deleted imitation term.",
-                    "After 4,000 or more guided steps, the drop is mostly red.")
+                    "On the finger, after 4,000 or more guided steps, the drop is mostly red.")
 
     # -- 7. where it stops ---------------------------------------------------
     f += card(["Where this stops."],
