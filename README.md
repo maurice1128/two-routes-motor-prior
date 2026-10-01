@@ -1,30 +1,28 @@
-# What a Motor Prior Is Worth
+# Given and Taken Away
 
 Code, launchers, analysis and audit scripts for
 
-> **What a Motor Prior Is Worth: A Body Model and a Teacher Compared to Convergence and Through Withdrawal.**
-> Mu-Hua Wang, 2026. Manuscript prepared for *IEEE Transactions on Cognitive and Developmental Systems*; not posted to any preprint server.
+> **Given and Taken Away: What a Body Model and a Teacher Leave a Muscle-Driven Learner.**
+> Manuscript in preparation for *IEEE Transactions on Cognitive and Developmental Systems*; not posted to any preprint server.
+> (Earlier titles: *What a Motor Prior Is Worth*; *Two Routes to a Motor Prior*.)
 
 **Project page:** https://maurice1128.github.io/projects/motor-prior.html
-**Paper:** [`paper/what_a_motor_prior_is_worth.pdf`](paper/what_a_motor_prior_is_worth.pdf) (LaTeX source, generated tables and figures alongside it).
-
-This paper merges and supersedes two earlier drafts by the same author: *Two Routes to a Motor Prior* (the first version of this repository, which scored every condition at a 12,000-step endpoint) and a separate study of teacher withdrawal. Everything reported is run to 100,000 steps with a per-condition plateau check.
+**Paper:** [`paper/given_and_taken_away.pdf`](paper/given_and_taken_away.pdf) (LaTeX source, generated tables and figures alongside it).
 
 ---
 
-## The claim
+## The study
 
-One soft actor-critic learner on six muscle-driven bodies — myoElbow (1 joint, six muscles, mrad), myoFinger (4 joints, five muscles, mm) and four planar muscle arms of one to four joints (mm) — given one of two frozen priors. At least twelve matched seeds per condition (24 on the 3- and 4-joint arms), paired-*t* 95 % intervals, every number on held-out targets.
+One soft actor-critic learner on six muscle-driven bodies -- myoElbow (1 joint, six muscles, mrad), myoFinger (4 joints, five muscles, mm) and four planar muscle arms of one to four joints (mm) -- is given one of two kinds of help, each against a random counterpart, and the help is then taken away. At least twelve matched seeds per condition (24 on the 3- and 4-joint arms); every run is scored by the mean of its held-out evaluations at 90k-100k steps; paired-*t* 95 % intervals.
 
 | | what it is | where it comes from |
 |---|---|---|
-| **Body model** | a frozen forward model `(s,a) → s'` used for short-horizon Dyna rollouts; the condition is handed the environment's analytic reward at imagined states | learned once from reward-free Ornstein–Uhlenbeck babbling (`src/build_prior.py`), then frozen |
-| **Teacher** | a frozen actor attached through a distillation term `c·‖tanh μ_s − tanh μ_T‖²`, added to the student's own gradient or replacing it until withdrawal | T1: a model-free actor after 30k rewarded steps (`src/train_teacher2.py`); T2 (finger): the actor of a 100k body-model run |
+| **Body model** | a frozen forward model `(s,a) -> s'` used for short-horizon Dyna rollouts; the imagined reward is the environment's analytic reward | learned once from reward-free Ornstein-Uhlenbeck babbling (`src/build_prior.py`), then frozen |
+| **Teacher** | a frozen actor attached through an imitation term `(c/|A|) * ||tanh mu_s - tanh mu_T||^2`, added to the student's own gradient or replacing it until withdrawal | T1: a model-free actor after 30k rewarded steps; T2 (finger): the actor of the best of twelve 100k body-model runs |
 
-**Main result — the withdrawal cost decomposes, and what remains at convergence is not dependence.**
-Replacing a withdrawn teacher by a frozen snapshot of the student (`selfanchor`: the loss term stays, no new information) separates the two things withdrawal removes. The teacher's share of the immediate drop *falls* with attachment on both bodies (−6.23 [−7.79, −4.68] mrad and −4.65 [−7.05, −2.25] mm per 1,000 attached steps); the deleted term's share does not. Once training has converged, a learner that lost its teacher is never detectably worse than one never guided — 22 cells over two bodies, seven attachment durations and two teaching regimes — and with a competent teacher it is ahead, by more the longer it was guided (−8.44 [−9.89, −6.99] mm per 1,000 steps). A withdrawn body model can leave the learner short of one that kept it (finger +15.31 [+5.70, +24.91] mm) but never behind one that never had it (finger −24.99 [−44.86, −5.11]).
+Taking the teacher away is controlled with a *self-anchor*: the teacher is replaced by a frozen copy of the student, which keeps the imitation term and removes only the teacher. Taking the body model away is compared with a never-had learner that trains the same way after withdrawal (`purge` vs `blank`, `matched` vs `blank64`).
 
-**Second result — a prior is worth its content.** The babble model beats model-free learning on four of six bodies and a random model on all six; the random model's harm grows with joint count (+0.41 [+0.18, +0.63] of model-free error per joint), the trained model's benefit does not. A teacher is worth its competence: on the finger a near-no-op teacher leaves the student +28.33 [+16.11, +40.56] mm behind no aid, a competent one puts it ahead of every condition without that teacher.
+Main results, all in the paper with intervals: a learner whose teacher is withdrawn is not detectably worse than one never guided on either MyoSuite body (on the finger it keeps most of the teacher's benefit; the elbow is also run to 200k); the babble-trained body model beats model-free learning and a random model on most bodies; a teacher is worth its competence.
 
 ---
 
@@ -49,9 +47,15 @@ launchers/                   the invocations behind each table (PowerShell, resu
   run_arms100k.ps1, run_arms100k_more.ps1, run_arms100k_prior2.ps1   joint-count series  (Table II)
   run_withdraw100k.ps1, run_sweep100k.ps1, run_v3_batch.ps1   teacher withdrawal       (Tables III, IV)
   run_v3c_gaps.ps1           finger replacing regime and finger body-model withdrawal   (Tables V, VI)
+  run_long200k.ps1           myoElbow teacher withdrawal extended to 200k (none / constant / abrupt x 7 t_w)
+  run_bm_arm4.ps1            body-model withdrawal on the four-joint arm (purge / matched, 24 seeds)
 
 analysis/
-  v3/make_tables_v3.py, v3/make_table_replace.py   Tables II, IV, V generated from the per-seed JSON
+  v4/common.py               data access and statistics (late-mean endpoint) used by every v4 script
+  v4/make_tables_v4.py, v4/extra_v4.py, v4/long200k.py, v4/arm4_bm.py   every table and quoted number -> v4/numbers.json
+  v4/make_figs_v4.py         the four figures; v4/plateau_v4.py the convergence check; v4/count_runs_v4.py run count
+  v4/audits/audit_v4.py      checks every decimal in the prose and every table cell against numbers.json and raw JSON
+  v3/make_tables_v3.py, v3/make_table_replace.py   the previous version's tables (kept for the record)
   v3/make_figs_v3.py         the three figures
   v3/*_stats.py, v3/v3*.py   the statistics behind every table and prose number
   v3/count_runs_v3.py        run count and CPU time
@@ -79,7 +83,7 @@ Runs are seed-deterministic on CPU. Every run of the earlier 12k study with a co
 
 ## Reproducing the statistics
 
-`analysis/audits/audit_v3b.py` is the check the paper was released under: every cell of the six tables, every star or bold mark, every interval in the prose, every worded claim (each phrase must appear in the paper *and* be true of the data) and the plateau count, recomputed from the per-seed JSON. **1,245 items, 0 mismatches** at release. Scripts carry the absolute paths of the machine they ran on at the top of each file; change `W` (this study's results) and `Z` (the carried 12k study's) to run them elsewhere.
+`analysis/v4/audits/audit_v4.py` is the check of the current version (prose decimals and table cells against `numbers.json`, recomputed from the per-seed JSON; 0 mismatches). `analysis/audits/audit_v3b.py` is the check the previous version was released under: every cell of the six tables, every star or bold mark, every interval in the prose, every worded claim (each phrase must appear in the paper *and* be true of the data) and the plateau count, recomputed from the per-seed JSON. **1,245 items, 0 mismatches** at release. Scripts carry the absolute paths of the machine they ran on at the top of each file; change `W` (this study's results) and `Z` (the carried 12k study's) to run them elsewhere.
 
 `records/HANDOFF.md` §4 lists every number the project page may show; §5 lists wordings that are wrong and must not be used.
 

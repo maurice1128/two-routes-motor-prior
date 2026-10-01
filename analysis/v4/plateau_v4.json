@@ -1,0 +1,251 @@
+{
+ "n_conditions": 97,
+ "headline_drift": {
+  "elbow_add": [
+   1.52,
+   -1.96,
+   5.0
+  ],
+  "elbow_rep": [
+   0.2,
+   -3.22,
+   3.63
+  ],
+  "finger_add": [
+   -6.53,
+   -15.73,
+   2.67
+  ],
+  "finger_rep": [
+   -4.44,
+   -13.95,
+   5.08
+  ]
+ },
+ "moving": [
+  [
+   "elbow prior",
+   [
+    -3.31,
+    -5.78,
+    -0.85
+   ]
+  ],
+  [
+   "elbow randprior",
+   [
+    -13.42,
+    -23.83,
+    -3.02
+   ]
+  ],
+  [
+   "elbow coach",
+   [
+    -1.91,
+    -3.56,
+    -0.27
+   ]
+  ],
+  [
+   "elbow priorcoach",
+   [
+    -1.88,
+    -3.12,
+    -0.64
+   ]
+  ],
+  [
+   "finger priorcoachT2",
+   [
+    -0.54,
+    -1.06,
+    -0.02
+   ]
+  ],
+  [
+   "arm1 randprior",
+   [
+    5.58,
+    1.57,
+    9.58
+   ]
+  ],
+  [
+   "arm2 prior",
+   [
+    -4.6,
+    -7.35,
+    -1.84
+   ]
+  ],
+  [
+   "arm2 randprior",
+   [
+    -14.56,
+    -25.18,
+    -3.95
+   ]
+  ],
+  [
+   "arm3 prior",
+   [
+    -20.33,
+    -34.84,
+    -5.82
+   ]
+  ],
+  [
+   "arm4 blank64",
+   [
+    -21.04,
+    -41.42,
+    -0.66
+   ]
+  ],
+  [
+   "arm4 prior",
+   [
+    -14.62,
+    -26.42,
+    -2.83
+   ]
+  ],
+  [
+   "arm4 randprior",
+   [
+    42.8,
+    2.51,
+    83.09
+   ]
+  ],
+  [
+   "elbow sweep selfanchor w6000",
+   [
+    -1.63,
+    -2.87,
+    -0.38
+   ]
+  ],
+  [
+   "elbow sweep selfanchor w7000",
+   [
+    -1.76,
+    -3.09,
+    -0.42
+   ]
+  ],
+  [
+   "elbow sweep selfanchor w8000",
+   [
+    -1.29,
+    -2.26,
+    -0.32
+   ]
+  ],
+  [
+   "elbow constant",
+   [
+    -1.91,
+    -3.56,
+    -0.27
+   ]
+  ],
+  [
+   "elbow replace abrupt w4000",
+   [
+    -3.85,
+    -7.47,
+    -0.24
+   ]
+  ],
+  [
+   "elbow replace selfanchor w2000",
+   [
+    -1.38,
+    -2.23,
+    -0.53
+   ]
+  ],
+  [
+   "elbow replace selfanchor w4000",
+   [
+    -2.09,
+    -3.77,
+    -0.4
+   ]
+  ],
+  [
+   "elbow replace selfanchor w6000",
+   [
+    -2.07,
+    -3.4,
+    -0.74
+   ]
+  ],
+  [
+   "elbow replace selfanchor w8000",
+   [
+    -2.02,
+    -3.47,
+    -0.56
+   ]
+  ],
+  [
+   "elbow replace gateon w2000",
+   [
+    -2.19,
+    -4.2,
+    -0.17
+   ]
+  ],
+  [
+   "elbow replace gateon w6000",
+   [
+    -2.05,
+    -3.35,
+    -0.75
+   ]
+  ],
+  [
+   "elbow replace gateon w8000",
+   [
+    -2.42,
+    -3.9,
+    -0.94
+   ]
+  ],
+  [
+   "finger sweep abrupt w4000",
+   [
+    -4.84,
+    -8.87,
+    -0.81
+   ]
+  ],
+  [
+   "finger sweep abrupt w8000",
+   [
+    -3.45,
+    -5.97,
+    -0.92
+   ]
+  ],
+  [
+   "finger replace gateon w4000",
+   [
+    -0.49,
+    -0.9,
+    -0.09
+   ]
+  ],
+  [
+   "arm4 bodymodel purge",
+   [
+    -48.57,
+    -72.23,
+    -24.92
+   ]
+  ]
+ ]
+}

@@ -1,0 +1,21 @@
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+ & myoElbow (mrad) & myoFinger, T1 (mm) & myoFinger, T2 (mm) \\
+\midrule
+\texttt{blank} / \texttt{blank64}   & 30.88 / 34.80 & 99.17 / 78.88 & \\
+\texttt{prior} / \texttt{randprior} & 26.98 / 52.75 & 52.98 / 103.09 & \\
+\texttt{coach} / \texttt{randcoach} & 22.23 / 47.29 & 120.53 / 114.25 & 37.46 / 114.25 \\
+\texttt{priorcoach}                 & 24.46 & 114.94 & 33.59 \\
+\midrule
+\texttt{prior}$-$\texttt{blank} & $\mathbf{-3.90}\ [-7.42, -0.38]$ & $\mathbf{-46.19}\ [-58.70, -33.69]$ &  \\
+\texttt{prior}$-$\texttt{blank64} & $\mathbf{-7.82}\ [-11.02, -4.62]$ & $\mathbf{-25.90}\ [-33.77, -18.04]$ &  \\
+\texttt{blank64}$-$\texttt{blank} & $\mathbf{+3.92}\ [+1.26, +6.58]$ & $\mathbf{-20.29}\ [-32.53, -8.05]$ &  \\
+\texttt{prior}$-$\texttt{randprior} & $\mathbf{-25.78}\ [-34.71, -16.84]$ & $\mathbf{-50.11}\ [-64.54, -35.68]$ &  \\
+\texttt{randprior}$-$\texttt{blank} & $\mathbf{+21.88}\ [+14.60, +29.15]$ & $+3.92\ [-14.49, +22.34]$ &  \\
+\texttt{coach}$-$\texttt{blank} & $\mathbf{-8.65}\ [-12.25, -5.05]$ & $\mathbf{+21.36}\ [+9.83, +32.89]$ & $\mathbf{-61.71}\ [-74.98, -48.44]$ \\
+\texttt{coach}$-$\texttt{prior} & $\mathbf{-4.75}\ [-6.28, -3.22]$ & $\mathbf{+67.55}\ [+58.80, +76.29]$ & $\mathbf{-15.52}\ [-24.43, -6.60]$ \\
+\texttt{coach}$-$\texttt{randcoach} & $\mathbf{-25.06}\ [-40.64, -9.48]$ & $+6.28\ [-2.71, +15.27]$ & $\mathbf{-76.79}\ [-87.26, -66.31]$ \\
+\texttt{priorcoach}$-$\texttt{coach} & $+2.23\ [-1.04, +5.50]$ & $\mathbf{-5.58}^\ddagger\ [-10.95, -0.21]$ & $-3.87\ [-11.06, +3.32]$ \\
+\texttt{coach}$_{\mathrm{T2}}-$\texttt{coach}$_{\mathrm{T1}}$ & & \multicolumn{2}{c}{$\mathbf{-83.07}\ [-89.88, -76.25]$} \\
+\bottomrule
+\end{tabular}

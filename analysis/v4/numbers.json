@@ -1,0 +1,1953 @@
+{
+ "elbow_add_pooled": [
+  1.76,
+  -1.36,
+  4.89,
+  4.31
+ ],
+ "elbow_add_ref": [
+  -8.65,
+  -12.25,
+  -5.05,
+  -5.71
+ ],
+ "elbow_add_share": 49.9,
+ "finger_add_pooled": [
+  -43.25,
+  -54.72,
+  -31.79,
+  -33.9
+ ],
+ "finger_add_ref": [
+  -61.71,
+  -74.98,
+  -48.44,
+  -50.88
+ ],
+ "finger_add_share": null,
+ "elbow_rep_pooled": [
+  1.09,
+  -2.64,
+  4.82,
+  4.14
+ ],
+ "elbow_rep_ref": [
+  -4.01,
+  -6.57,
+  -1.44,
+  -1.91
+ ],
+ "elbow_rep_share": 103.3,
+ "finger_rep_pooled": [
+  -55.87,
+  -66.36,
+  -45.39,
+  -47.32
+ ],
+ "finger_rep_ref": [
+  -62.91,
+  -73.44,
+  -52.37,
+  -54.31
+ ],
+ "finger_rep_share": null,
+ "dec_elbow_ab_con_dip": [
+  45.17,
+  24.58,
+  65.76,
+  61.97
+ ],
+ "dec_elbow_ab_con_12k": [
+  16.0,
+  6.49,
+  25.52,
+  23.77
+ ],
+ "dec_elbow_ab_con_end": [
+  9.9,
+  5.93,
+  13.86,
+  13.13
+ ],
+ "dec_finger_ab_con_dip": [
+  49.2,
+  31.79,
+  66.6,
+  63.4
+ ],
+ "dec_finger_ab_con_12k": [
+  27.34,
+  19.52,
+  35.15,
+  33.71
+ ],
+ "dec_finger_ab_con_end": [
+  -0.89,
+  -8.91,
+  7.14,
+  5.66
+ ],
+ "dec_elbow_sa_con_dip": [
+  4.95,
+  -1.24,
+  11.15,
+  10.01
+ ],
+ "dec_elbow_sa_con_12k": [
+  9.42,
+  3.13,
+  15.7,
+  14.55
+ ],
+ "dec_elbow_sa_con_end": [
+  8.61,
+  4.18,
+  13.04,
+  12.22
+ ],
+ "dec_finger_sa_con_dip": [
+  2.97,
+  0.24,
+  5.7,
+  5.2
+ ],
+ "dec_finger_sa_con_12k": [
+  3.61,
+  1.66,
+  5.57,
+  5.21
+ ],
+ "dec_finger_sa_con_end": [
+  -2.44,
+  -9.82,
+  4.95,
+  3.59
+ ],
+ "dec_elbow_ab_sa_dip": [
+  40.22,
+  19.96,
+  60.48,
+  56.75
+ ],
+ "dec_elbow_ab_sa_12k": [
+  6.59,
+  -5.8,
+  18.98,
+  16.7
+ ],
+ "dec_elbow_ab_sa_end": [
+  1.29,
+  -2.57,
+  5.14,
+  4.43
+ ],
+ "dec_finger_ab_sa_dip": [
+  46.22,
+  30.3,
+  62.15,
+  59.22
+ ],
+ "dec_finger_ab_sa_12k": [
+  23.72,
+  14.85,
+  32.6,
+  30.97
+ ],
+ "dec_finger_ab_sa_end": [
+  1.55,
+  -1.79,
+  4.89,
+  4.27
+ ],
+ "dec_elbow_ra_sa_dip": [
+  47.44,
+  24.94,
+  69.94,
+  65.8
+ ],
+ "dec_elbow_ra_sa_12k": [
+  20.66,
+  6.0,
+  35.32,
+  32.63
+ ],
+ "dec_elbow_ra_sa_end": [
+  2.55,
+  -9.87,
+  14.96,
+  12.68
+ ],
+ "dec_finger_ra_sa_dip": [
+  70.47,
+  59.93,
+  81.0,
+  79.06
+ ],
+ "dec_finger_ra_sa_12k": [
+  85.93,
+  76.16,
+  95.69,
+  93.89
+ ],
+ "dec_finger_ra_sa_end": [
+  73.79,
+  66.61,
+  80.98,
+  79.66
+ ],
+ "dec_elbow_ab_none_dip": [
+  43.64,
+  25.86,
+  61.43,
+  58.15
+ ],
+ "dec_elbow_ab_none_12k": [
+  -15.6,
+  -32.75,
+  1.54,
+  -1.61
+ ],
+ "dec_elbow_ab_none_end": [
+  1.25,
+  -1.45,
+  3.94,
+  3.44
+ ],
+ "dec_finger_ab_none_dip": [
+  55.03,
+  34.45,
+  75.61,
+  71.83
+ ],
+ "dec_finger_ab_none_12k": [
+  -55.43,
+  -85.16,
+  -25.7,
+  -31.17
+ ],
+ "dec_finger_ab_none_end": [
+  -62.6,
+  -75.6,
+  -49.59,
+  -51.98
+ ],
+ "dec_elbow_con_none_12k": [
+  -31.61,
+  -48.58,
+  -14.63,
+  -17.76
+ ],
+ "dec_elbow_con_none_end": [
+  -8.65,
+  -12.25,
+  -5.05,
+  -5.71
+ ],
+ "dec_finger_con_none_12k": [
+  -82.77,
+  -110.62,
+  -54.91,
+  -60.04
+ ],
+ "dec_finger_con_none_end": [
+  -61.71,
+  -74.98,
+  -48.44,
+  -50.88
+ ],
+ "sw_elbow_dip_teacher_slope": [
+  -6.23,
+  -7.79,
+  -4.68
+ ],
+ "sw_elbow_dip_teacher_cells": [
+  [
+   45.97,
+   true
+  ],
+  [
+   22.02,
+   true
+  ],
+  [
+   25.64,
+   true
+  ],
+  [
+   1.52,
+   false
+  ],
+  [
+   2.68,
+   false
+  ],
+  [
+   7.76,
+   false
+  ],
+  [
+   4.95,
+   false
+  ]
+ ],
+ "sw_elbow_dip_loss_slope": [
+  4.76,
+  -0.13,
+  9.65
+ ],
+ "sw_elbow_dip_loss_cells": [
+  [
+   13.55,
+   false
+  ],
+  [
+   17.65,
+   true
+  ],
+  [
+   37.91,
+   true
+  ],
+  [
+   42.57,
+   false
+  ],
+  [
+   77.88,
+   true
+  ],
+  [
+   24.29,
+   true
+  ],
+  [
+   40.22,
+   true
+  ]
+ ],
+ "sw_elbow_dip_total_slope": [
+  -1.47,
+  -5.79,
+  2.84
+ ],
+ "sw_elbow_dip_total_cells": [
+  [
+   59.52,
+   true
+  ],
+  [
+   39.67,
+   true
+  ],
+  [
+   63.55,
+   true
+  ],
+  [
+   44.09,
+   true
+  ],
+  [
+   80.56,
+   true
+  ],
+  [
+   32.05,
+   true
+  ],
+  [
+   45.17,
+   true
+  ]
+ ],
+ "sw_elbow_dip_abnone_slope": [
+  -4.68,
+  -14.8,
+  5.44
+ ],
+ "sw_elbow_dip_abnone_cells": [
+  [
+   55.44,
+   false
+  ],
+  [
+   63.67,
+   true
+  ],
+  [
+   74.68,
+   true
+  ],
+  [
+   75.04,
+   true
+  ],
+  [
+   79.6,
+   true
+  ],
+  [
+   13.43,
+   false
+  ],
+  [
+   43.64,
+   true
+  ]
+ ],
+ "sw_elbow_end_teacher_slope": [
+  0.77,
+  -0.55,
+  2.09
+ ],
+ "sw_elbow_end_teacher_cells": [
+  [
+   3.51,
+   false
+  ],
+  [
+   7.48,
+   true
+  ],
+  [
+   2.84,
+   false
+  ],
+  [
+   3.69,
+   false
+  ],
+  [
+   7.54,
+   true
+  ],
+  [
+   8.27,
+   true
+  ],
+  [
+   8.61,
+   true
+  ]
+ ],
+ "sw_elbow_end_loss_slope": [
+  -0.53,
+  -2.05,
+  0.99
+ ],
+ "sw_elbow_end_loss_cells": [
+  [
+   5.73,
+   false
+  ],
+  [
+   2.97,
+   false
+  ],
+  [
+   7.26,
+   true
+  ],
+  [
+   5.92,
+   true
+  ],
+  [
+   3.9,
+   false
+  ],
+  [
+   3.89,
+   false
+  ],
+  [
+   1.29,
+   false
+  ]
+ ],
+ "sw_elbow_end_total_slope": [
+  0.24,
+  -0.36,
+  0.84
+ ],
+ "sw_elbow_end_total_cells": [
+  [
+   9.24,
+   true
+  ],
+  [
+   10.45,
+   true
+  ],
+  [
+   10.1,
+   true
+  ],
+  [
+   9.61,
+   true
+  ],
+  [
+   11.44,
+   true
+  ],
+  [
+   12.16,
+   true
+  ],
+  [
+   9.9,
+   true
+  ]
+ ],
+ "sw_elbow_end_abnone_slope": [
+  0.24,
+  -0.36,
+  0.84
+ ],
+ "sw_elbow_end_abnone_cells": [
+  [
+   0.59,
+   false
+  ],
+  [
+   1.8,
+   false
+  ],
+  [
+   1.45,
+   false
+  ],
+  [
+   0.96,
+   false
+  ],
+  [
+   2.79,
+   false
+  ],
+  [
+   3.51,
+   false
+  ],
+  [
+   1.25,
+   false
+  ]
+ ],
+ "sw_finger_dip_teacher_slope": [
+  -4.65,
+  -7.05,
+  -2.25
+ ],
+ "sw_finger_dip_teacher_cells": [
+  [
+   35.69,
+   true
+  ],
+  [
+   23.6,
+   true
+  ],
+  [
+   17.21,
+   true
+  ],
+  [
+   21.44,
+   true
+  ],
+  [
+   16.15,
+   true
+  ],
+  [
+   8.13,
+   true
+  ],
+  [
+   2.97,
+   true
+  ]
+ ],
+ "sw_finger_dip_loss_slope": [
+  7.07,
+  2.95,
+  11.19
+ ],
+ "sw_finger_dip_loss_cells": [
+  [
+   7.29,
+   false
+  ],
+  [
+   22.05,
+   false
+  ],
+  [
+   40.25,
+   true
+  ],
+  [
+   39.31,
+   true
+  ],
+  [
+   56.39,
+   true
+  ],
+  [
+   54.61,
+   true
+  ],
+  [
+   46.22,
+   true
+  ]
+ ],
+ "sw_finger_dip_total_slope": [
+  2.42,
+  -2.41,
+  7.26
+ ],
+ "sw_finger_dip_total_cells": [
+  [
+   42.98,
+   true
+  ],
+  [
+   45.65,
+   true
+  ],
+  [
+   57.46,
+   true
+  ],
+  [
+   60.75,
+   true
+  ],
+  [
+   72.54,
+   true
+  ],
+  [
+   62.74,
+   true
+  ],
+  [
+   49.2,
+   true
+  ]
+ ],
+ "sw_finger_dip_abnone_slope": [
+  9.34,
+  2.07,
+  16.61
+ ],
+ "sw_finger_dip_abnone_cells": [
+  [
+   -7.34,
+   false
+  ],
+  [
+   28.62,
+   true
+  ],
+  [
+   53.89,
+   true
+  ],
+  [
+   46.47,
+   true
+  ],
+  [
+   72.82,
+   true
+  ],
+  [
+   56.39,
+   true
+  ],
+  [
+   55.03,
+   true
+  ]
+ ],
+ "sw_finger_end_teacher_slope": [
+  -7.76,
+  -9.07,
+  -6.45
+ ],
+ "sw_finger_end_teacher_cells": [
+  [
+   52.1,
+   true
+  ],
+  [
+   23.95,
+   true
+  ],
+  [
+   18.8,
+   true
+  ],
+  [
+   13.92,
+   true
+  ],
+  [
+   11.44,
+   true
+  ],
+  [
+   0.75,
+   false
+  ],
+  [
+   -2.44,
+   false
+  ]
+ ],
+ "sw_finger_end_loss_slope": [
+  -0.93,
+  -2.27,
+  0.41
+ ],
+ "sw_finger_end_loss_cells": [
+  [
+   -5.21,
+   false
+  ],
+  [
+   15.84,
+   true
+  ],
+  [
+   6.33,
+   false
+  ],
+  [
+   -0.65,
+   false
+  ],
+  [
+   -6.0,
+   false
+  ],
+  [
+   -1.2,
+   false
+  ],
+  [
+   1.55,
+   false
+  ]
+ ],
+ "sw_finger_end_total_slope": [
+  -8.7,
+  -10.07,
+  -7.33
+ ],
+ "sw_finger_end_total_cells": [
+  [
+   46.89,
+   true
+  ],
+  [
+   39.79,
+   true
+  ],
+  [
+   25.13,
+   true
+  ],
+  [
+   13.27,
+   true
+  ],
+  [
+   5.44,
+   false
+  ],
+  [
+   -0.45,
+   false
+  ],
+  [
+   -0.89,
+   false
+  ]
+ ],
+ "sw_finger_end_abnone_slope": [
+  -8.7,
+  -10.07,
+  -7.33
+ ],
+ "sw_finger_end_abnone_cells": [
+  [
+   -14.82,
+   true
+  ],
+  [
+   -21.92,
+   true
+  ],
+  [
+   -36.58,
+   true
+  ],
+  [
+   -48.44,
+   true
+  ],
+  [
+   -56.27,
+   true
+  ],
+  [
+   -62.16,
+   true
+  ],
+  [
+   -62.6,
+   true
+  ]
+ ],
+ "rep_elbow_selfanchor_constant_post4k_slope": [
+  5.77,
+  1.3,
+  10.25
+ ],
+ "rep_elbow_selfanchor_constant_post4k_cells": [
+  [
+   28.11,
+   true
+  ],
+  [
+   64.78,
+   true
+  ],
+  [
+   88.11,
+   true
+  ],
+  [
+   58.83,
+   true
+  ]
+ ],
+ "rep_elbow_selfanchor_constant_end_slope": [
+  -1.07,
+  -1.76,
+  -0.37
+ ],
+ "rep_elbow_selfanchor_constant_end_cells": [
+  [
+   3.59,
+   false
+  ],
+  [
+   -0.43,
+   false
+  ],
+  [
+   -3.31,
+   true
+  ],
+  [
+   -2.56,
+   true
+  ]
+ ],
+ "rep_elbow_gateon_constant_post4k_slope": [
+  5.9,
+  0.26,
+  11.54
+ ],
+ "rep_elbow_gateon_constant_post4k_cells": [
+  [
+   25.02,
+   true
+  ],
+  [
+   69.83,
+   true
+  ],
+  [
+   84.74,
+   true
+  ],
+  [
+   59.39,
+   true
+  ]
+ ],
+ "rep_elbow_gateon_constant_end_slope": [
+  -0.08,
+  -0.4,
+  0.24
+ ],
+ "rep_elbow_gateon_constant_end_cells": [
+  [
+   -2.62,
+   true
+  ],
+  [
+   -1.79,
+   false
+  ],
+  [
+   -2.96,
+   true
+  ],
+  [
+   -2.76,
+   true
+  ]
+ ],
+ "rep_elbow_selfanchor_gateon_post4k_slope": [
+  -0.13,
+  -3.44,
+  3.19
+ ],
+ "rep_elbow_selfanchor_gateon_post4k_cells": [
+  [
+   3.1,
+   false
+  ],
+  [
+   -5.05,
+   false
+  ],
+  [
+   3.36,
+   false
+  ],
+  [
+   -0.56,
+   false
+  ]
+ ],
+ "rep_elbow_selfanchor_gateon_end_slope": [
+  -0.99,
+  -1.71,
+  -0.26
+ ],
+ "rep_elbow_selfanchor_gateon_end_cells": [
+  [
+   6.21,
+   true
+  ],
+  [
+   1.36,
+   false
+  ],
+  [
+   -0.35,
+   false
+  ],
+  [
+   0.2,
+   false
+  ]
+ ],
+ "rep_elbow_abrupt_selfanchor_post4k_slope": [
+  4.32,
+  -4.6,
+  13.24
+ ],
+ "rep_elbow_abrupt_selfanchor_post4k_cells": [
+  [
+   51.91,
+   true
+  ],
+  [
+   136.89,
+   true
+  ],
+  [
+   96.79,
+   false
+  ],
+  [
+   94.1,
+   true
+  ]
+ ],
+ "rep_elbow_abrupt_selfanchor_end_slope": [
+  1.28,
+  0.27,
+  2.3
+ ],
+ "rep_elbow_abrupt_selfanchor_end_cells": [
+  [
+   0.8,
+   false
+  ],
+  [
+   5.2,
+   true
+  ],
+  [
+   9.01,
+   true
+  ],
+  [
+   8.09,
+   true
+  ]
+ ],
+ "rep_elbow_abrupt_constant_post4k_slope": [
+  10.1,
+  0.52,
+  19.68
+ ],
+ "rep_elbow_abrupt_constant_post4k_cells": [
+  [
+   80.02,
+   true
+  ],
+  [
+   201.67,
+   true
+  ],
+  [
+   184.89,
+   true
+  ],
+  [
+   152.94,
+   true
+  ]
+ ],
+ "rep_elbow_abrupt_constant_end_slope": [
+  0.22,
+  -0.72,
+  1.16
+ ],
+ "rep_elbow_abrupt_constant_end_cells": [
+  [
+   4.4,
+   true
+  ],
+  [
+   4.77,
+   true
+  ],
+  [
+   5.7,
+   true
+  ],
+  [
+   5.53,
+   true
+  ]
+ ],
+ "rep_elbow_abrupt_none_post4k_slope": [
+  10.87,
+  -0.11,
+  21.85
+ ],
+ "rep_elbow_abrupt_none_post4k_cells": [
+  [
+   34.56,
+   true
+  ],
+  [
+   140.35,
+   true
+  ],
+  [
+   131.31,
+   true
+  ],
+  [
+   110.06,
+   true
+  ]
+ ],
+ "rep_elbow_abrupt_none_end_slope": [
+  0.22,
+  -0.72,
+  1.16
+ ],
+ "rep_elbow_abrupt_none_end_cells": [
+  [
+   0.39,
+   false
+  ],
+  [
+   0.76,
+   false
+  ],
+  [
+   1.7,
+   false
+  ],
+  [
+   1.53,
+   false
+  ]
+ ],
+ "rep_elbow_constant_none": [
+  -4.01,
+  -6.57,
+  -1.44,
+  -1.91
+ ],
+ "rep_finger_selfanchor_constant_post4k_slope": [
+  -5.79,
+  -7.0,
+  -4.58
+ ],
+ "rep_finger_selfanchor_constant_post4k_cells": [
+  [
+   46.8,
+   true
+  ],
+  [
+   5.74,
+   true
+  ],
+  [
+   5.53,
+   true
+  ],
+  [
+   8.28,
+   true
+  ]
+ ],
+ "rep_finger_selfanchor_constant_end_slope": [
+  -4.09,
+  -5.56,
+  -2.62
+ ],
+ "rep_finger_selfanchor_constant_end_cells": [
+  [
+   22.87,
+   true
+  ],
+  [
+   -0.5,
+   false
+  ],
+  [
+   -2.8,
+   true
+  ],
+  [
+   -3.62,
+   true
+  ]
+ ],
+ "rep_finger_gateon_constant_post4k_slope": [
+  0.21,
+  -0.92,
+  1.35
+ ],
+ "rep_finger_gateon_constant_post4k_cells": [
+  [
+   6.69,
+   true
+  ],
+  [
+   3.01,
+   true
+  ],
+  [
+   7.28,
+   false
+  ],
+  [
+   6.69,
+   true
+  ]
+ ],
+ "rep_finger_gateon_constant_end_slope": [
+  -0.04,
+  -0.2,
+  0.13
+ ],
+ "rep_finger_gateon_constant_end_cells": [
+  [
+   -1.54,
+   true
+  ],
+  [
+   -1.46,
+   true
+  ],
+  [
+   -1.7,
+   true
+  ],
+  [
+   -1.7,
+   true
+  ]
+ ],
+ "rep_finger_selfanchor_gateon_post4k_slope": [
+  -6.0,
+  -7.18,
+  -4.83
+ ],
+ "rep_finger_selfanchor_gateon_post4k_cells": [
+  [
+   40.11,
+   true
+  ],
+  [
+   2.73,
+   true
+  ],
+  [
+   -1.75,
+   false
+  ],
+  [
+   1.59,
+   true
+  ]
+ ],
+ "rep_finger_selfanchor_gateon_end_slope": [
+  -4.05,
+  -5.52,
+  -2.58
+ ],
+ "rep_finger_selfanchor_gateon_end_cells": [
+  [
+   24.41,
+   true
+  ],
+  [
+   0.96,
+   false
+  ],
+  [
+   -1.1,
+   true
+  ],
+  [
+   -1.92,
+   true
+  ]
+ ],
+ "rep_finger_abrupt_selfanchor_post4k_slope": [
+  3.6,
+  -0.09,
+  7.3
+ ],
+ "rep_finger_abrupt_selfanchor_post4k_cells": [
+  [
+   46.42,
+   true
+  ],
+  [
+   53.61,
+   true
+  ],
+  [
+   62.41,
+   true
+  ],
+  [
+   67.5,
+   true
+  ]
+ ],
+ "rep_finger_abrupt_selfanchor_end_slope": [
+  1.37,
+  -0.28,
+  3.02
+ ],
+ "rep_finger_abrupt_selfanchor_end_cells": [
+  [
+   -3.08,
+   false
+  ],
+  [
+   3.76,
+   false
+  ],
+  [
+   6.29,
+   true
+  ],
+  [
+   5.22,
+   true
+  ]
+ ],
+ "rep_finger_abrupt_constant_post4k_slope": [
+  -2.19,
+  -5.78,
+  1.4
+ ],
+ "rep_finger_abrupt_constant_post4k_cells": [
+  [
+   93.22,
+   true
+  ],
+  [
+   59.35,
+   true
+  ],
+  [
+   67.94,
+   true
+  ],
+  [
+   75.78,
+   true
+  ]
+ ],
+ "rep_finger_abrupt_constant_end_slope": [
+  -2.72,
+  -4.28,
+  -1.16
+ ],
+ "rep_finger_abrupt_constant_end_cells": [
+  [
+   19.79,
+   true
+  ],
+  [
+   3.26,
+   false
+  ],
+  [
+   3.48,
+   false
+  ],
+  [
+   1.6,
+   false
+  ]
+ ],
+ "rep_finger_abrupt_none_post4k_slope": [
+  1.67,
+  -4.81,
+  8.15
+ ],
+ "rep_finger_abrupt_none_post4k_cells": [
+  [
+   -9.06,
+   false
+  ],
+  [
+   -35.28,
+   true
+  ],
+  [
+   -3.74,
+   false
+  ],
+  [
+   -8.43,
+   false
+  ]
+ ],
+ "rep_finger_abrupt_none_end_slope": [
+  -2.72,
+  -4.28,
+  -1.16
+ ],
+ "rep_finger_abrupt_none_end_cells": [
+  [
+   -43.11,
+   true
+  ],
+  [
+   -59.65,
+   true
+  ],
+  [
+   -59.43,
+   true
+  ],
+  [
+   -61.3,
+   true
+  ]
+ ],
+ "rep_finger_constant_none": [
+  -62.91,
+  -73.44,
+  -52.37,
+  -54.31
+ ],
+ "bm_elbow_keep_blank_end": [
+  -3.9,
+  -7.42,
+  -0.38,
+  -1.03
+ ],
+ "bm_elbow_purge_blank_end": [
+  0.35,
+  -3.96,
+  4.65,
+  3.86
+ ],
+ "bm_elbow_matched_blank64_end": [
+  -0.69,
+  -5.15,
+  3.77,
+  2.95
+ ],
+ "bm_elbow_matched_keep_end": [
+  7.13,
+  3.18,
+  11.07,
+  10.35
+ ],
+ "bm_elbow_keep_blank64_end": [
+  -7.82,
+  -11.02,
+  -4.62,
+  -5.21
+ ],
+ "bm_elbow_matched_keep_12k": [
+  22.11,
+  4.94,
+  39.28,
+  36.12
+ ],
+ "bm_elbow_mean_keep": 26.98,
+ "bm_elbow_mean_purge": 31.22,
+ "bm_elbow_mean_matched": 34.1,
+ "bm_elbow_mean_blank": 30.88,
+ "bm_elbow_mean_blank64": 34.8,
+ "bm_finger_keep_blank_end": [
+  -46.19,
+  -58.7,
+  -33.69,
+  -35.99
+ ],
+ "bm_finger_purge_blank_end": [
+  -26.05,
+  -38.06,
+  -14.04,
+  -16.25
+ ],
+ "bm_finger_matched_blank64_end": [
+  -11.44,
+  -22.33,
+  -0.56,
+  -2.56
+ ],
+ "bm_finger_matched_keep_end": [
+  14.46,
+  6.63,
+  22.29,
+  20.85
+ ],
+ "bm_finger_keep_blank64_end": [
+  -25.9,
+  -33.77,
+  -18.04,
+  -19.49
+ ],
+ "bm_finger_matched_keep_12k": [
+  9.97,
+  -1.5,
+  21.45,
+  19.33
+ ],
+ "bm_finger_mean_keep": 52.98,
+ "bm_finger_mean_purge": 73.12,
+ "bm_finger_mean_matched": 67.44,
+ "bm_finger_mean_blank": 99.17,
+ "bm_finger_mean_blank64": 78.88,
+ "bm_arm4_keep_blank_end": [
+  -94.99,
+  -134.0,
+  -55.98,
+  -62.68
+ ],
+ "bm_arm4_purge_blank_end": [
+  5.84,
+  -51.63,
+  63.31,
+  53.45
+ ],
+ "bm_arm4_matched_blank64_end": [
+  10.71,
+  -18.86,
+  40.28,
+  35.21
+ ],
+ "bm_arm4_matched_keep_end": [
+  45.99,
+  25.51,
+  66.47,
+  62.95
+ ],
+ "bm_arm4_keep_blank64_end": [
+  -35.28,
+  -59.5,
+  -11.06,
+  -15.21
+ ],
+ "bm_arm4_mean_keep": 105.6,
+ "bm_arm4_mean_purge": 206.43,
+ "bm_arm4_mean_matched": 151.58,
+ "bm_arm4_mean_blank": 200.59,
+ "bm_arm4_mean_blank64": 140.87,
+ "core_elbow_mean_blank": 30.88,
+ "core_elbow_mean_blank64": 34.8,
+ "core_elbow_mean_prior": 26.98,
+ "core_elbow_mean_randprior": 52.75,
+ "core_elbow_mean_coach": 22.23,
+ "core_elbow_mean_randcoach": 47.29,
+ "core_elbow_mean_priorcoach": 24.46,
+ "core_finger_mean_blank": 99.17,
+ "core_finger_mean_blank64": 78.88,
+ "core_finger_mean_prior": 52.98,
+ "core_finger_mean_randprior": 103.09,
+ "core_finger_mean_coach": 120.53,
+ "core_finger_mean_randcoach": 114.25,
+ "core_finger_mean_priorcoach": 114.94,
+ "core_finger_mean_coachT2": 37.46,
+ "core_finger_mean_priorcoachT2": 33.59,
+ "core_elbow_prior_blank": [
+  -3.9,
+  -7.42,
+  -0.38,
+  -1.03
+ ],
+ "core_finger_prior_blank": [
+  -46.19,
+  -58.7,
+  -33.69,
+  -35.99
+ ],
+ "core_elbow_prior_blank64": [
+  -7.82,
+  -11.02,
+  -4.62,
+  -5.21
+ ],
+ "core_finger_prior_blank64": [
+  -25.9,
+  -33.77,
+  -18.04,
+  -19.49
+ ],
+ "core_elbow_blank64_blank": [
+  3.92,
+  1.26,
+  6.58,
+  6.09
+ ],
+ "core_finger_blank64_blank": [
+  -20.29,
+  -32.53,
+  -8.05,
+  -10.3
+ ],
+ "core_elbow_prior_randprior": [
+  -25.78,
+  -34.71,
+  -16.84,
+  -18.49
+ ],
+ "core_finger_prior_randprior": [
+  -50.11,
+  -64.54,
+  -35.68,
+  -38.34
+ ],
+ "core_elbow_randprior_blank": [
+  21.88,
+  14.6,
+  29.15,
+  27.81
+ ],
+ "core_finger_randprior_blank": [
+  3.92,
+  -14.49,
+  22.34,
+  18.95
+ ],
+ "core_elbow_coach_blank": [
+  -8.65,
+  -12.25,
+  -5.05,
+  -5.71
+ ],
+ "core_finger_coach_blank": [
+  21.36,
+  9.83,
+  32.89,
+  30.77
+ ],
+ "core_finger_coachT2_blank": [
+  -61.71,
+  -74.98,
+  -48.44,
+  -50.88
+ ],
+ "core_elbow_coach_prior": [
+  -4.75,
+  -6.28,
+  -3.22,
+  -3.5
+ ],
+ "core_finger_coach_prior": [
+  67.55,
+  58.8,
+  76.29,
+  74.69
+ ],
+ "core_finger_coachT2_prior": [
+  -15.52,
+  -24.43,
+  -6.6,
+  -8.24
+ ],
+ "core_elbow_coach_randcoach": [
+  -25.06,
+  -40.64,
+  -9.48,
+  -12.35
+ ],
+ "core_finger_coach_randcoach": [
+  6.28,
+  -2.71,
+  15.27,
+  13.62
+ ],
+ "core_finger_coachT2_randcoach": [
+  -76.79,
+  -87.26,
+  -66.31,
+  -68.24
+ ],
+ "core_elbow_priorcoach_coach": [
+  2.23,
+  -1.04,
+  5.5,
+  4.9
+ ],
+ "core_finger_priorcoach_coach": [
+  -5.58,
+  -10.95,
+  -0.21,
+  -1.2
+ ],
+ "core_finger_priorcoachT2_coachT2": [
+  -3.87,
+  -11.06,
+  3.32,
+  2.0
+ ],
+ "core_finger_coachT2_coach": [
+  -83.07,
+  -89.88,
+  -76.25,
+  -77.51
+ ],
+ "core_finger_coachT2_blank64": [
+  -41.42,
+  -50.01,
+  -32.83,
+  -34.41
+ ],
+ "core_finger_coachT2_randprior": [
+  -65.63,
+  -79.5,
+  -51.76,
+  -54.31
+ ],
+ "core_finger_coachT2_priorcoach": [
+  -77.48,
+  -85.59,
+  -69.38,
+  -70.87
+ ],
+ "core_elbow_prior_blank_12k": [
+  -20.72,
+  -35.85,
+  -5.59,
+  -8.37
+ ],
+ "core_elbow_coach_blank_12k": [
+  -31.61,
+  -48.58,
+  -14.63,
+  -17.76
+ ],
+ "core_finger_prior_blank_12k": [
+  -27.1,
+  -66.32,
+  12.12,
+  4.9
+ ],
+ "core_finger_coach_blank_12k": [
+  5.17,
+  -26.49,
+  36.82,
+  31.0
+ ],
+ "arm_arm1_prior_blank": [
+  -9.16,
+  -14.98,
+  -3.34,
+  -4.41
+ ],
+ "arm_arm1_prior_blank64": [
+  -11.74,
+  -21.81,
+  -1.66,
+  -3.52
+ ],
+ "arm_arm1_blank64_blank": [
+  2.58,
+  -4.82,
+  9.98,
+  8.61
+ ],
+ "arm_arm1_randprior_blank": [
+  -4.24,
+  -6.93,
+  -1.54,
+  -2.04
+ ],
+ "arm_arm1_prior_randprior": [
+  -4.92,
+  -10.28,
+  0.43,
+  -0.55
+ ],
+ "arm_arm1_pct": -10,
+ "arm_arm2_prior_blank": [
+  -6.4,
+  -11.09,
+  -1.71,
+  -2.57
+ ],
+ "arm_arm2_prior_blank64": [
+  -9.77,
+  -16.65,
+  -2.89,
+  -4.15
+ ],
+ "arm_arm2_blank64_blank": [
+  3.37,
+  -3.61,
+  10.35,
+  9.06
+ ],
+ "arm_arm2_randprior_blank": [
+  22.02,
+  9.81,
+  34.23,
+  31.98
+ ],
+ "arm_arm2_prior_randprior": [
+  -28.42,
+  -41.59,
+  -15.25,
+  -17.67
+ ],
+ "arm_arm2_pct": -18,
+ "arm_arm3_prior_blank": [
+  -35.52,
+  -62.29,
+  -8.75,
+  -13.34
+ ],
+ "arm_arm3_prior_blank64": [
+  -7.84,
+  -30.11,
+  14.44,
+  10.61
+ ],
+ "arm_arm3_blank64_blank": [
+  -27.68,
+  -56.25,
+  0.88,
+  -4.02
+ ],
+ "arm_arm3_randprior_blank": [
+  97.37,
+  41.17,
+  153.56,
+  143.92
+ ],
+ "arm_arm3_prior_randprior": [
+  -132.89,
+  -183.14,
+  -82.64,
+  -91.26
+ ],
+ "arm_arm3_pct": -20,
+ "arm_arm4_prior_blank": [
+  -94.99,
+  -134.0,
+  -55.98,
+  -62.68
+ ],
+ "arm_arm4_prior_blank64": [
+  -35.28,
+  -59.5,
+  -11.06,
+  -15.21
+ ],
+ "arm_arm4_blank64_blank": [
+  -59.72,
+  -102.93,
+  -16.51,
+  -23.92
+ ],
+ "arm_arm4_randprior_blank": [
+  262.2,
+  198.84,
+  325.57,
+  314.7
+ ],
+ "arm_arm4_prior_randprior": [
+  -357.2,
+  -406.71,
+  -307.69,
+  -316.18
+ ],
+ "arm_arm4_pct": -47,
+ "arm_trend_pb": [
+  -0.1,
+  -0.19,
+  -0.01,
+  -0.03
+ ],
+ "arm_trend_pb_wilcoxon": 0.034,
+ "arm_trend_rb": [
+  0.44,
+  0.3,
+  0.58,
+  0.55
+ ],
+ "arm_trend_rb_wilcoxon": 0.0,
+ "sw_elbow_dip_connone_window_slope": [
+  -3.2,
+  -9.62,
+  3.21
+ ],
+ "sw_finger_dip_connone_window_slope": [
+  6.92,
+  2.34,
+  11.5
+ ],
+ "plateau_arm4_purge": [
+  -48.57,
+  -72.23,
+  -24.92
+ ],
+ "plateau_arm4_matched": [
+  -18.76,
+  -45.08,
+  7.55
+ ],
+ "share_finger_add": 70,
+ "share_finger_rep": 89,
+ "share_finger_bm_purge": 56,
+ "share_finger_bm_matched": 44,
+ "long_elbow_pooled": [
+  0.04,
+  -2.11,
+  2.19,
+  1.79
+ ],
+ "long_elbow_worth": [
+  -7.5,
+  -10.18,
+  -4.82
+ ],
+ "long_elbow_abnone_cells": [
+  [
+   -0.12,
+   false
+  ],
+  [
+   2.37,
+   false
+  ],
+  [
+   1.12,
+   false
+  ],
+  [
+   0.62,
+   false
+  ],
+  [
+   -1.83,
+   false
+  ],
+  [
+   -1.63,
+   false
+  ],
+  [
+   -0.26,
+   false
+  ]
+ ],
+ "long_elbow_total_cells": [
+  [
+   7.38,
+   true
+  ],
+  [
+   9.87,
+   true
+  ],
+  [
+   8.62,
+   true
+  ],
+  [
+   8.12,
+   true
+  ],
+  [
+   5.67,
+   true
+  ],
+  [
+   5.88,
+   true
+  ],
+  [
+   7.24,
+   true
+  ]
+ ],
+ "long_elbow_abnone_slope": [
+  -0.41,
+  -0.93,
+  0.12
+ ],
+ "long_elbow_mean_none": 27.86,
+ "long_elbow_mean_constant": 20.36,
+ "long_elbow_pooled_drift": [
+  2.36,
+  0.37,
+  4.35
+ ],
+ "long_elbow_moving": [
+  "none"
+ ],
+ "long_elbow_none_drift": [
+  -2.79,
+  -4.99,
+  -0.6
+ ],
+ "long_elbow_pooled_170": [
+  -2.32,
+  -5.25,
+  0.61
+ ]
+}

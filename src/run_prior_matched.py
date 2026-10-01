@@ -63,7 +63,7 @@ class MatchedSAC(sac_dyna.SAC):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--body", required=True, choices=["myoelbow", "myofinger"])
+    ap.add_argument("--body", required=True, choices=["myoelbow", "myofinger", "arm4"])
     ap.add_argument("--arm", required=True,
                     choices=["keep", "soft", "purge", "matched"],
                     help="keep: prior throughout, fresh imagination. soft: stop "
@@ -84,7 +84,7 @@ def main():
         sys.exit("WM_BODY=%r but --body=%r; arm_env dispatches on the environment "
                  "variable, so they must agree." % (os.environ.get("WM_BODY"), args.body))
 
-    prior = {"myoelbow": "prior_myo.pt", "myofinger": "prior_finger.pt"}[args.body]
+    prior = {"myoelbow": "prior_myo.pt", "myofinger": "prior_finger.pt", "arm4": "prior_arm4_200k.pt"}[args.body]
     off = 10 ** 9 if args.arm == "keep" else args.withdraw_at
     _state["off"] = off
     _state["match"] = (args.arm == "matched")
