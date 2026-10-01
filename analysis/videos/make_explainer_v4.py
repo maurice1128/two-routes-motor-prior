@@ -82,8 +82,8 @@ def main():
                 "Identical machinery. Only the model's content differs.",
                 "n=12:  -50.11 mm [-64.54, -35.68]  in favour of the trained model", T[:2])
     f += image_card(os.path.join(FIGS, "teaser_slim.png"),
-                    "Left: what the body model has learned matters more the more joints the body has.",
-                    "Random model minus trained model, planar arms of 1-4 joints:  5, 28, 133, 357 mm.")
+                    "Left: a random model that ignores the action gets more harmful as joints are added.",
+                    "Random minus trained model, arms of 1-4 joints: 5, 28, 133, 357 mm. The trained model avoids it.")
 
     # -- 4. the other help -------------------------------------------------
     f += card(["Help two: a teacher."],
@@ -98,18 +98,18 @@ def main():
               ["After 2,000 to 8,000 guided steps, on both MyoSuite bodies."])
     f += image_card(os.path.join(FIGS, "withdrawal_curves_v4.png"),
                     "Withdrawn (dashed): a sharp drop, then recovery. Never guided: grey. Teacher kept: red.",
-                    "Finger: 43 mm ahead of never guided; at least 60% of the teacher's benefit kept.")
+                    "Finger: 43 mm ahead of never guided; more than half of the teacher's benefit kept.")
     f += card(["No lasting deficit."],
               ["On neither body does the withdrawn learner end detectably",
                "behind a learner that was never guided."],
               hold=4.5)
-    f += card(["The drop after withdrawal:", "lost knowledge early, the change of objective later."],
+    f += card(["The drop after withdrawal"],
               ["Control: keep the imitation term, but point it at a frozen copy of the student.",
-               "Early, the student loses what the teacher knew; later, it has absorbed it."],
+               "After longer attachment, most of the drop is the removed term, not lost knowledge."],
               hold=5.0)
     f += image_card(os.path.join(FIGS, "dip_slim.png"),
                     "Blue: lost teacher knowledge.  Red: the deleted imitation term.",
-                    "Withdrawn early, the drop is mostly blue; withdrawn later, mostly red.")
+                    "After 4,000 or more guided steps, the drop is mostly red.")
 
     # -- 7. where it stops ---------------------------------------------------
     f += card(["Where this stops."],
@@ -118,9 +118,8 @@ def main():
               hold=4.5)
 
     # -- 8. the claim ----------------------------------------------------------
-    f += card(["What a body model has learned",
-               "matters more the more joints there are.",
-               "A competent teacher can be taken away."],
+    f += card(["A competent teacher can be taken away.",
+               "A body model is worth its content."],
               ["Learned Body Models and Withdrawn Teachers  -  2026"], hold=6.0)
 
     dest = os.path.join(OUT, "explainer_v4.mp4")

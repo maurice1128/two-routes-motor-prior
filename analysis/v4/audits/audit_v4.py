@@ -50,7 +50,7 @@ add(list(pl["headline_drift"].values()))
 for b, (A, seeds) in arms().items():
     for k in A: pool.add(round(float(np.mean([end(A[k], s) for s in seeds])), 1))
 
-CONST = {27.2: "T1 elbow held-out", 169.1: "T1 finger held-out", 172.3: "zero-activation finger", 35.6: "T2 held-out",
+CONST = {0.0008: "kept50 p late (slim2_family)", 0.0018: "kept50 p 100k / max Holm", 57.8: "arm1 reach floor (verified)", 0.86: "arm1 reach range (verified)", 0.02: "normaliser diff in SD (verified)", 9.2: "elbow total range late", 12.2: "elbow total range late", 7.6: "elbow total range 100k", 17.0: "elbow total range 100k", 27.2: "T1 elbow held-out", 169.1: "T1 finger held-out", 172.3: "zero-activation finger", 35.6: "T2 held-out",
          85.3: "worst finger prior seed", 54.4: "mean finger prior seed", 1.5: "normaliser difference bound",
          2.75: "budget finger 12k (v3 audit)", 12.77: "budget", 18.27: "budget", 1.55: "budget elbow 12k (v3 audit)",
          0.87: "budget", 3.97: "budget", 4.9: "plateau expected by chance", 0.2: "babble sigma? no", 0.15: "OU theta",
