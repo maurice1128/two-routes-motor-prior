@@ -8,7 +8,7 @@ Body model (secondary): trained-minus-random gap compared BETWEEN bodies (arm3 v
 arm1; Welch t on independent seeds, body as the unit), both endpoints; the random model's
 sensitivity to the action; the one-joint arm's reach floor is computed separately (reach floor
 script) and entered as a constant.
-Primary family (Holm): 14 tests listed in FAMILY below."""
+Primary family (Holm): the 10 tests collected in P below (specified during revision)."""
 import json, math
 import numpy as np
 from scipy import stats

@@ -52,13 +52,14 @@ replacing it by a frozen copy of the student, which keeps the imitation
 objective and removes only the teacher; a frozen body model learned from
 reward-free babbling is compared with a random model in identical imagination
 machinery. On the finger, a learner whose competent teacher is withdrawn ends
-ahead of one never guided and keeps more than half of the teacher's benefit,
-from about a quarter when withdrawn after 2,000 steps to about all of it from
-7,000 on. After 4,000 or more steps of attachment, most of the drop that follows
-withdrawal is the removed imitation term rather than lost knowledge. A random
-model, whose predictions barely depend on the action, becomes increasingly
-harmful as joints are added; the babble-trained model avoids this harm. The
-primary results hold under two endpoints and a Holm correction.
+ahead of one never guided, and the share of the teacher's benefit it keeps
+rises with the time the teacher was attached, from about a quarter after 2,000
+steps to about all of it after 7,000. There, after 4,000 or more steps
+of attachment, most of the drop that follows withdrawal is the removed
+imitation term rather than the teacher's not-yet-absorbed knowledge. On
+planar arms, a random model, whose predictions barely depend on the
+action, becomes increasingly harmful as joints are added; the babble-trained
+model avoids this harm.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -111,7 +112,7 @@ on one and two joints, 24 on three and four). The random model's predictions
 barely depend on the action; its imagined experience becomes increasingly
 harmful as joints are added, and the trained model avoids that harm. (b) A
 competent teacher can be taken away: on myoFinger, learners whose teacher is
-withdrawn (dashed) drop sharply, recover, and end with far lower error than a
+withdrawn (dashed) drop sharply, recover, and end with lower error than a
 learner never guided (grey), the more so the longer they were guided. Mean
 across 12 seeds, band $\pm1$~SE; the grey band is the scored window.}
 \label{fig:teaser}
@@ -121,18 +122,20 @@ The study applies these controls to one soft actor-critic learner on six
 muscle-driven bodies (Fig.~\ref{fig:teaser}). The contributions are:
 \begin{itemize}
 \item evidence that a competent teacher can be withdrawn without leaving the
-learner behind one never guided: on the finger the withdrawn learner keeps more
-than half of the teacher's benefit, more the longer it was taught
+learner behind one never guided: on the finger the share of the teacher's
+benefit the withdrawn learner keeps rises with the time it was taught, and is
+more than half on average over the withdrawal times tested
 (Sec.~\ref{sec:withdraw});
-\item a self-anchor control showing that, after 4k or more steps of
-attachment, most of the drop that follows withdrawal is the removed imitation
-term rather than lost teacher knowledge (Sec.~\ref{sec:dip});
-\item evidence that a body model is worth its content: imagined experience from
-a random model, whose predictions barely depend on the action, becomes
-increasingly harmful as joints are added, while the babble-trained model avoids
-this harm (Sec.~\ref{sec:model}).
+\item a self-anchor control showing that on the finger, after 4,000 or more
+steps of attachment, most of the drop that follows withdrawal is the removed
+imitation term rather than the teacher's not-yet-absorbed knowledge
+(Sec.~\ref{sec:dip});
+\item evidence that a body model is worth its content: on a series of planar
+arms, imagined experience from a random model, whose predictions barely depend
+on the action, becomes increasingly harmful as joints are added, while the
+babble-trained model avoids this harm (Sec.~\ref{sec:model}).
 \end{itemize}
-The primary results hold under two endpoints and survive a Holm correction
+The ten primary tests hold under two endpoints and survive a Holm correction
 (Sec.~\ref{sec:stats}). Code and data will be released on acceptance.
 
 \section{Related Work}
@@ -203,9 +206,9 @@ are 100 steps; evaluation is greedy on twenty held-out targets disjoint from the
 training targets. One soft actor-critic (SAC) \cite{haarnoja2018,haarnoja2018b}
 learner is used in every condition: two hidden layers of 128 units,
 update-to-data ratio 2, batch 128, learning rate $3\times10^{-4}$, automatic
-entropy temperature. Conditions differ only in what is added. The reward, given
-on every step in every condition, is a continuous knowledge-of-results channel,
-and every evaluation is made without any help.
+entropy temperature. Conditions differ only in what is added. The reward is
+given on every step in every condition, and every evaluation is made without
+any help.
 
 \subsection{The teacher and its withdrawal}
 The teacher is a frozen actor. The student's actor loss is
@@ -238,7 +241,10 @@ never guided. The \emph{drop} at withdrawal is the rise in error over the
 1{,}000 steps after $t_w$ relative to \texttt{constant}; the self-anchor splits
 it: $\text{selfanchor}-\text{constant}$ is losing the teacher with the
 objective kept (the \emph{teacher} component), $\text{abrupt}-\text{selfanchor}$
-is losing the imitation term (the \emph{loss-term} component). The snapshot
+is losing the imitation term (the \emph{loss-term} component). On the elbow the
+drop is read from a separate set of runs with the same seeds and code,
+evaluated every 1{,}000 steps, which reproduce the 100k runs at their shared
+checkpoints. The snapshot
 holds what the student has absorbed by $t_w$, so the teacher component measures
 only what the teacher still has to add, and it shrinks with attachment partly
 by construction.
@@ -252,8 +258,9 @@ steps branched from 200 real states every 100 environment steps; the reward at
 an imagined state is the environment's analytic reach reward, computed with the
 simulator's forward kinematics. Each update draws 64 real and 64 imagined
 transitions. Conditions: \texttt{prior} uses the trained model;
-\texttt{randprior} uses a randomly initialised network in identical machinery,
-with the trained model's input and output normalisers (on the one- and
+\texttt{randprior} uses a randomly initialised network in identical machinery
+(one random network per body, shared by all seeds, as the trained model is one
+checkpoint per body), with the trained model's input and output normalisers (on the one- and
 four-joint arms those of an earlier build, which differ by at most 0.02
 standard deviations). Its predictions barely depend on the action: across the
 four arms, a change of action moves its predicted joint state 2--4\% as much as
@@ -275,10 +282,13 @@ paired-$t$ 95\% intervals; bold or $^*$ marks an interval excluding zero. A
 non-detected contrast is not evidence of no difference. The withdrawn learner
 keeps at least a fraction $r$ of the teacher's benefit if the one-sided 95\%
 upper bound of $(\text{abrupt}-\text{none}) - r\,(\text{constant}-\text{none})$,
-pooled over $t_w$ within each seed, is below zero; $r=0.5$ was fixed before
-testing, and the largest $r$ that passes is reported as a descriptive bound.
+pooled over $t_w$ within each seed, is below zero. The threshold $r=0.5$, a
+conventional ``more than half'', was chosen during revision, after a
+descriptive bound had been computed; the largest $r$ that passes is reported
+as that descriptive bound.
 Effects of joint count are tested between bodies, with each arm's seeds
-independent (Welch $t$). The primary family has ten tests: on the finger, the
+independent (Welch $t$). The primary family, specified during revision, has
+ten tests: on the finger, the
 withdrawn-minus-never-guided contrast, retention of at least half the teacher's
 benefit and the slope of the withdrawn learner's advantage over $t_w$; and the
 trained-minus-random gap on the three- and four-joint arms against the
@@ -320,14 +330,15 @@ On the finger, with a competent teacher, the withdrawn learner ends far ahead
 of a learner never guided (Table~\ref{tab:teacher}, Fig.~\ref{fig:teaser}b):
 \ci{-43.25}{-54.72}{-31.79}~mm pooled over the seven withdrawal times
 (single evaluation: \ci{-40.63}{-53.05}{-28.22}), against a teacher worth
-\ci{-61.71}{-74.98}{-48.44}. It keeps more than half of the teacher's benefit
-(one-sided test against one half, $p=0.0008$; single evaluation $p=0.0018$),
-and at one-sided 95\% confidence at least 62\% of it (60\% at the single
-evaluation), averaged over withdrawal times. It keeps more the longer it was
-taught: per withdrawal time the share kept rises from 24\% at $t_w=2000$ to
-101\% at $t_w=8000$ (22\% to 99\% at the single evaluation), and the slope of
-its advantage over the never-guided learner is \ci{-8.70}{-10.07}{-7.33}~mm per
-1{,}000 attached steps (\ci{-8.44}{-9.89}{-6.99}). From $t_w=7000$ on it is not
+\ci{-61.71}{-74.98}{-48.44}. It keeps more the longer it was taught: per
+withdrawal time the share kept rises from 24\% at $t_w=2000$ to 101\% at
+$t_w=8000$ (22\% to 99\% at the single evaluation), and the slope of its
+advantage over the never-guided learner is \ci{-8.70}{-10.07}{-7.33}~mm per
+1{,}000 attached steps (\ci{-8.44}{-9.89}{-6.99}). Withdrawn at 2,000 or 3,000
+steps it keeps less than half (point estimates 24\% and 36\%); averaged over the seven withdrawal times it
+keeps more than half (one-sided test against one half, $p=0.0008$; single
+evaluation $p=0.0018$), and at one-sided 95\% confidence at least 62\% (60\%
+at the single evaluation). From $t_w=7000$ on it is not
 detectably behind a learner that kept its teacher, under either endpoint.
 
 On the elbow the teacher is worth less, \ci{-8.65}{-12.25}{-5.05}~mrad, and its
@@ -341,9 +352,10 @@ the runs above at every checkpoint). Over 190--200k the withdrawn learner is
 \ci{+0.04}{-2.11}{+2.19}~mrad from one never guided (single 200k evaluation:
 \ci{-0.51}{-5.20}{+4.18}); under both endpoints any deficit is smaller than the
 teacher's full worth, though not smaller than half of it at the single
-evaluation (one-sided 95\%).
+evaluation (one-sided 95\%). The never-guided learner is still improving at
+200k, so this comparison is not made at a plateau.
 
-\subsection{The drop at withdrawal is mostly the removed imitation term after longer attachment}
+\subsection{The drop at withdrawal after longer attachment}
 \label{sec:dip}
 \begin{table*}[!t]
 \caption{The rise in error over the 1{,}000 steps after withdrawal at $t_w$,
@@ -428,10 +440,14 @@ single evaluation \ci{+4.34}{-3.60}{+12.29}) and increasingly harmful after:
 \ci{+22.02}{+9.81}{+34.23}~mm on two joints, \ci{+97.37}{+41.17}{+153.56} on
 three and \ci{+262.20}{+198.84}{+325.57} on four. Against model-free learning
 with the same real data per update (\texttt{blank64}), the trained model's own
-advantage does not grow with joint count (Table~\ref{tab:model}, last column).
-The result is therefore not that a correct model is worth more on harder
-bodies, but that imagination whose content is uninformative becomes
-increasingly costly there, and the babble-trained model avoids that cost. The
+advantage is not shown to grow with joint count (Table~\ref{tab:model}, last
+column). The result is therefore not that a correct model is worth more on
+harder bodies, but that, along the arm series, imagination whose content is
+uninformative becomes increasingly costly, and the babble-trained model avoids
+that cost. The MyoSuite bodies do not follow joint count: the random model
+harms the one-joint elbow (\ci{+21.88}{+14.60}{+29.15}~mrad against
+model-free learning) and not detectably the four-joint finger
+(\ci{+3.92}{-14.49}{+22.34}~mm). The
 gaps are still widening at 100k on the one-, three- and four-joint arms and
 may be narrowing on two joints (\ci{+9.96}{-0.42}{+20.35} over the last 20k
 steps).
@@ -441,26 +457,25 @@ steps).
 \textbf{Taking a teacher away.} Every evaluation in this study is made without
 the teacher, so the drop that follows withdrawal is not a retention-test
 analogue: it is a decline during continued practice once the training signal
-changes. The comparison at the end of training, after long practice with
-reward, is closer to a reacquisition test \cite{sullivan2008}. On the elbow the
-outcome fits the guidance hypothesis: the teacher's benefit does not outlast
-it. On the finger it does not: most of a competent teacher's benefit persists,
-the more so the longer the teacher was attached, and the withdrawn learner ends
-far ahead of one never guided. The self-anchor shows what the drop consists of:
-after longer attachment it is mostly the removed imitation term, a change in
-what the learner is trained on rather than a loss of what the teacher taught.
+changes. On the elbow the teacher's benefit does not outlast it, but no deficit
+relative to never being guided is detected. On the finger a competent
+teacher's benefit largely persists, the more so the longer the teacher was
+attached, and the withdrawn learner ends far ahead of one never guided. The
+self-anchor shows what the drop consists of: on the finger, after longer
+attachment, it is mostly the removed imitation term, and the teacher's
+not-yet-absorbed knowledge accounts for less of it.
 The setting differs from human studies: attachment duration rather than
 feedback frequency is varied, and reward is given on every step in every
 condition.
 
-\textbf{A body model is worth its content.} Imagination with a model that
-ignores the action costs little on one joint and much on four; with a model
-learned from babbling, the same machinery helps. What babbling buys is
-therefore, at least in part, protection against uninformative imagination, and
-that protection matters more as the body's redundancy grows. Against
-model-free learning with matched real data, however, the trained model's own
-advantage does not grow with joint count, so the data do not show that a
-correct model is worth more on harder bodies.
+\textbf{A body model is worth its content.} On the planar arms, imagination
+with a model that ignores the action costs little on one joint and much on
+four; with a model learned from babbling, the same machinery helps. What
+babbling buys is therefore, at least in part, protection against uninformative
+imagination, and along the arm series that protection matters more as joints
+are added. Against model-free learning with matched real data, however, the
+trained model's own advantage is not shown to grow with joint count, so the
+data do not show that a correct model is worth more on harder bodies.
 
 \section{Limitations and Future Work}
 \label{sec:limits}
@@ -474,8 +489,9 @@ has one teacher, and the finger's competent teacher is the best of twelve
 candidate runs; teachers of graded quality would map the benefit against
 competence. Along the arm series, joint count, muscle count and biarticular
 muscles change together, and the one-joint arm cannot reach half of its
-targets; the random control is one initialisation per seed, and a model that
-uses the action but has learned the wrong body would be a stronger control.
+targets; each body has one trained and one random model, shared by all
+seeds, so variation between model draws is not sampled, and a model that uses
+the action but has learned the wrong body would be a stronger control.
 Withdrawal is a single step at 2k--8k steps; gradual fading and withdrawal
 after more than 8k steps are left to future work, as are longer training on the
 harder bodies and a physical robot.
@@ -483,12 +499,12 @@ harder bodies and a physical robot.
 \section{Conclusion}
 A teacher and a body model are given to a muscle-driven learner and tested
 with controls that change one thing at a time. A competent teacher can be taken
-away: on the finger the withdrawn learner keeps more than half of what the
-teacher gave, more the longer it was taught, and after longer attachment the
-drop that follows withdrawal is mostly the removed imitation term. A body model
-learned from babbling is worth its content: a random model in the same
-machinery becomes increasingly harmful as joints are added, and the trained
-model avoids that harm.
+away: on the finger the share of what the teacher gave that the withdrawn
+learner keeps rises with the time it was taught, and after longer attachment
+the drop that follows withdrawal is mostly the removed imitation term. A body
+model learned from babbling is worth its content: on planar arms, a random
+model in the same machinery becomes increasingly harmful as joints are added,
+and the trained model avoids that harm.
 
 \bibliographystyle{IEEEtran}
 \bibliography{refs}
