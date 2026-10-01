@@ -7,7 +7,7 @@
 % check: audits/audit_v4.py. Previous text: paper_slim1.tex; before subtraction: paper_v4_full.tex.
 \documentclass[journal]{IEEEtran}
 
-\usepackage[hidelinks,pdftitle={Learned Body Models and Withdrawn Teachers}]{hyperref}
+\usepackage[hidelinks,pdftitle={Withdrawn Teachers and Learned Body Models}]{hyperref}
 \usepackage{cite}
 \usepackage{graphicx}
 \usepackage{amsmath,amssymb}
@@ -22,19 +22,20 @@
 \setcounter{topnumber}{3}
 \setcounter{dbltopnumber}{3}
 \setcounter{totalnumber}{5}
+\raggedbottom
 
 \newcommand{\ci}[3]{$#1\,[#2,\,#3]$}
 
 \begin{document}
 
-\title{Learned Body Models and Withdrawn Teachers\\ in Muscle-Driven Motor Learning}
+\title{Withdrawn Teachers and Learned Body Models\\ in Muscle-Driven Motor Learning}
 
 % Double-anonymous review (TCDS policy since October 2024): no author,
 % affiliation, e-mail or funding until acceptance.
 \author{Anonymous Author(s)}
 
 \markboth{IEEE Transactions on Cognitive and Developmental Systems}%
-         {Learned Body Models and Withdrawn Teachers}
+         {Withdrawn Teachers and Learned Body Models}
 
 \maketitle
 
@@ -49,7 +50,7 @@ paper uses controls that change one thing at a time, on one soft actor-critic
 learner and six muscle-driven bodies: an elbow and a finger from MyoSuite and
 four planar arms of one to four joints. A withdrawn teacher is compared with
 replacing it by a frozen copy of the student, which keeps the imitation
-objective and removes only the teacher; a frozen body model learned from
+term and removes only the teacher; a frozen body model learned from
 reward-free babbling is compared with a random model in identical imagination
 machinery. On the finger, a learner whose competent teacher is withdrawn ends
 ahead of one never guided, and the share of the teacher's benefit it keeps
@@ -97,7 +98,7 @@ depends on the body, has not been isolated.
 
 Both questions can be answered with a control that changes one thing at a
 time. A frozen copy of the student, swapped in for the teacher at withdrawal,
-keeps the imitation objective and removes only the teacher; comparing it with
+keeps the imitation term and removes only the teacher; comparing it with
 a plain withdrawal separates lost knowledge from the change of objective. A
 random model in the identical imagination machinery isolates what the body
 model has learned.
@@ -105,16 +106,16 @@ model has learned.
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=0.9\textwidth]{figs/teaser_slim.png}
-\caption{The two findings. (a) A body model is worth its content: the random
-model's error minus the trained model's error, on planar muscle arms of one to
-four joints, under both endpoints (bars: mean; whiskers: 95\% interval; $n=12$
-on one and two joints, 24 on three and four). The random model's predictions
+\caption{The two findings. (a) A competent teacher can be taken away: on
+myoFinger, learners whose teacher is withdrawn (dashed) drop sharply, recover,
+and end with lower error than a learner never guided (grey), the more so the
+longer they were guided; mean across 12 seeds, band $\pm1$~SE, the grey band is
+the scored window. (b) A body model is worth its content: the random model's
+error minus the trained model's error, on planar muscle arms of one to four
+joints, under both endpoints (bars: mean; whiskers: 95\% interval; $n=12$ on
+one and two joints, 24 on three and four). The random model's predictions
 barely depend on the action; its imagined experience becomes increasingly
-harmful as joints are added, and the trained model avoids that harm. (b) A
-competent teacher can be taken away: on myoFinger, learners whose teacher is
-withdrawn (dashed) drop sharply, recover, and end with lower error than a
-learner never guided (grey), the more so the longer they were guided. Mean
-across 12 seeds, band $\pm1$~SE; the grey band is the scored window.}
+harmful as joints are added, and the trained model avoids that harm.}
 \label{fig:teaser}
 \end{figure*}
 
@@ -163,7 +164,7 @@ teacher knows \cite{yuan2020,sarnthein2023}; a term toward the learner's own
 earlier policy stabilises fine-tuning \cite{li2023proto,luo2023,zhao2022}, and
 a cloned policy fine-tuned by off-policy reinforcement often degrades when the
 constraint is removed \cite{nair2020,uchendu2023,zhang2023}. What is missing is
-a comparison of the withdrawn student with one never taught, with the teacher's
+a comparison of the withdrawn student with one never guided, with the teacher's
 knowledge held apart from the change of objective.
 
 \textbf{Body models.} Developmental robotics \cite{lungarella2003,asada2009,cangelosi2015}
@@ -241,7 +242,7 @@ never guided. The \emph{drop} at withdrawal is the rise in error over the
 1{,}000 steps after $t_w$ relative to \texttt{constant}; the self-anchor splits
 it: $\text{selfanchor}-\text{constant}$ is losing the teacher with the
 objective kept (the \emph{teacher} component), $\text{abrupt}-\text{selfanchor}$
-is losing the imitation term (the \emph{loss-term} component). On the elbow the
+is losing the imitation term (the \emph{imitation-term} component). On the elbow the
 drop is read from a separate set of runs with the same seeds and code,
 evaluated every 1{,}000 steps, which reproduce the 100k runs at their shared
 checkpoints. The snapshot
@@ -327,7 +328,7 @@ one-sided 95\% confidence (descriptive bound). Bold: interval excluding zero.}
 \end{table*}
 
 On the finger, with a competent teacher, the withdrawn learner ends far ahead
-of a learner never guided (Table~\ref{tab:teacher}, Fig.~\ref{fig:teaser}b):
+of a learner never guided (Table~\ref{tab:teacher}, Fig.~\ref{fig:teaser}a):
 \ci{-43.25}{-54.72}{-31.79}~mm pooled over the seven withdrawal times
 (single evaluation: \ci{-40.63}{-53.05}{-28.22}), against a teacher worth
 \ci{-61.71}{-74.98}{-48.44}. It keeps more the longer it was taught: per
@@ -360,7 +361,7 @@ evaluation (one-sided 95\%). The never-guided learner is still improving at
 \begin{table*}[!t]
 \caption{The rise in error over the 1{,}000 steps after withdrawal at $t_w$,
 relative to a learner that keeps its teacher (total), split by the self-anchor
-into the teacher component and the loss-term component; paired means, $n=12$,
+into the teacher component and the imitation-term component; paired means, $n=12$,
 $^*$: interval excluding zero (uncorrected).}
 \label{tab:dip}
 \centering\footnotesize
@@ -379,15 +380,15 @@ with 95\% intervals, $n=12$.}
 \label{fig:dip}
 \end{figure*}
 
-Withdrawal is followed by a sharp rise in error (Fig.~\ref{fig:teaser}b), of
+Withdrawal is followed by a sharp rise in error (Fig.~\ref{fig:teaser}a), of
 \ci{+42.98}{+8.71}{+77.26}~mm to \ci{+72.54}{+58.26}{+86.82} on the finger and
 \ci{+32.05}{+12.70}{+51.41}~mrad to \ci{+80.56}{+23.00}{+138.12} on the elbow
 over the next 1{,}000 steps relative to keeping the teacher
 (Table~\ref{tab:dip}, Fig.~\ref{fig:dip}). On the finger, from $t_w=4000$ on,
-the loss-term component exceeds the teacher component at every $t_w$, by 17.87
-to 46.48~mm, each significant after the Holm correction across $t_w$; the loss
+the imitation-term component exceeds the teacher component at every $t_w$, by 17.87
+to 46.48~mm, each significant after the Holm correction across $t_w$; the imitation
 term carries 65 to 94\% of the drop there (point estimates). On the elbow the
-teacher component is no longer detected from $t_w=5000$ on, and the loss-term
+teacher component is no longer detected from $t_w=5000$ on, and the imitation-term
 component exceeds it significantly after correction at $t_w=8000$. At
 $t_w=2000$ the point estimates favour the teacher component on both bodies
 (elbow: by \ci{+32.42}{+3.09}{+61.75}~mrad, uncorrected), but not significantly
@@ -427,7 +428,7 @@ uninformative imagination. On the planar arms the gap is
 \ci{-4.92}{-10.28}{+0.43}~mm on one joint (detected only at the single 100k
 evaluation), \ci{-28.42}{-41.59}{-15.25} on two,
 \ci{-132.89}{-183.14}{-82.64} on three and \ci{-357.20}{-406.71}{-307.69} on
-four (Fig.~\ref{fig:teaser}a). Compared between bodies it is larger on three
+four (Fig.~\ref{fig:teaser}b). Compared between bodies it is larger on three
 joints than on one by 127.96~mm (single evaluation 138.89) and on four joints
 than on one by 352.27~mm (344.68), $p<0.001$ under both endpoints. The trained
 model also beats the random one on both MyoSuite bodies, by

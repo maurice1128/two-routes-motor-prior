@@ -30,8 +30,8 @@ def ci95(v):
 E, F = core(); AR = arms()
 
 # ---- Fig 1 teaser
-fig, axes = plt.subplots(1, 2, figsize=(7.16, 2.9), gridspec_kw={"width_ratios": [1, 1.25]})
-ax = axes[0]
+fig, axes = plt.subplots(1, 2, figsize=(7.16, 2.9), gridspec_kw={"width_ratios": [1.25, 1]})
+ax = axes[1]
 for k, (e, f, col, lab) in enumerate((("late", end, "tab:blue", "mean over 90-100k"), ("100k", lambda r, s: r[s][100000], "tab:orange", "single 100k evaluation"))):
     ms, es = [], []
     for b in ("arm1", "arm2", "arm3", "arm4"):
@@ -39,12 +39,12 @@ for k, (e, f, col, lab) in enumerate((("late", end, "tab:blue", "mean over 90-10
     ax.bar(np.arange(1, 5) + (k - 0.5) * 0.36, ms, 0.34, yerr=es, capsize=2, color=col, label=lab)
 ax.set_xticks([1, 2, 3, 4]); ax.set_xlabel("joints of the planar muscle arm")
 ax.set_ylabel("random model $-$ trained model\n(held-out error, mm)")
-ax.set_title("(a) what the body model has learned"); ax.grid(alpha=0.3, axis="y"); ax.legend(frameon=False, loc="upper left")
-ax = axes[1]; sw = sweep("finger"); ax.axvspan(90000, 100000, color="0.85", lw=0, zorder=0)
+ax.set_title("(b) a body model is worth its content"); ax.grid(alpha=0.3, axis="y"); ax.legend(frameon=False, loc="upper left")
+ax = axes[0]; sw = sweep("finger"); ax.axvspan(90000, 100000, color="0.85", lw=0, zorder=0)
 band(ax, arr(sw["none"], S12), "never guided", "0.25"); band(ax, arr(sw["con"], S12), "teacher kept", "tab:red")
 band(ax, arr(sw["arms"][2000][0], S12), "teacher withdrawn at 2k", "tab:green", "--"); band(ax, arr(sw["arms"][8000][0], S12), "teacher withdrawn at 8k", "tab:blue", "--")
 ax.set_xlim(0, 100000); ax.set_ylim(20, 175); ax.grid(alpha=0.3); ax.set_xlabel("environment steps"); ax.set_ylabel("held-out error (mm)")
-ax.set_title("(b) taking a competent teacher away (myoFinger)"); ax.legend(frameon=False)
+ax.set_title("(a) taking a competent teacher away (myoFinger)"); ax.legend(frameon=False)
 fig.tight_layout(); fig.savefig(os.path.join(OUT, "teaser_slim.png"), dpi=300); plt.close(fig)
 
 # ---- Fig 2 learning curves
@@ -67,7 +67,7 @@ d = lambda r, s, tw: r[s][tw + 1000] - r[s][tw]
 for ax, body, unit in ((axes[0], "elbow", "mrad"), (axes[1], "finger", "mm")):
     sw = sweep(body)
     for k, (name, x, y, col) in enumerate((("total (abrupt $-$ constant)", "ab", "con", "k"), ("teacher (selfanchor $-$ constant)", "sa", "con", "tab:blue"),
-                                          ("loss term (abrupt $-$ selfanchor)", "ab", "sa", "tab:red"))):
+                                          ("imitation term (abrupt $-$ selfanchor)", "ab", "sa", "tab:red"))):
         ms, es = [], []
         for tw in TWS:
             a, sa = sw["dip"][tw]; src = {"ab": a, "sa": sa, "con": sw["dcon"]}

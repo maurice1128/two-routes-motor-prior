@@ -1,13 +1,13 @@
-# Learned Body Models and Withdrawn Teachers
+# Withdrawn Teachers and Learned Body Models
 
 Code, launchers, analysis and audit scripts for
 
-> **Learned Body Models and Withdrawn Teachers in Muscle-Driven Motor Learning.**
+> **Withdrawn Teachers and Learned Body Models in Muscle-Driven Motor Learning.**
 > Manuscript in preparation for *IEEE Transactions on Cognitive and Developmental Systems*; not posted to any preprint server.
 > (Earlier titles: *Given and Taken Away*; *What a Motor Prior Is Worth*; *Two Routes to a Motor Prior*.)
 
 **Project page:** https://maurice1128.github.io/projects/motor-prior.html
-**Paper:** [`paper/learned_body_models_withdrawn_teachers.pdf`](paper/learned_body_models_withdrawn_teachers.pdf) (LaTeX source, generated tables and figures alongside it).
+**Paper:** [`paper/withdrawn_teachers_learned_body_models.pdf`](paper/withdrawn_teachers_learned_body_models.pdf) (LaTeX source, generated tables and figures alongside it).
 
 ---
 

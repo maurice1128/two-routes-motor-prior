@@ -1,4 +1,4 @@
-"""The explainer for the v4 TCDS paper (2026-10-01): "Given and Taken Away".
+﻿"""The explainer for the v4 TCDS paper (2026-10-01): "Given and Taken Away".
 
 Same construction and footage as make_explainer_v3.py (every policy on screen is a 100,000-step
 policy from actors_finger100k/, the paper's own run for that seed, re-executed with the network
@@ -82,7 +82,7 @@ def main():
                 "Identical machinery. Only the model's content differs.",
                 "n=12:  -50.11 mm [-64.54, -35.68]  in favour of the trained model", T[:2])
     f += image_card(os.path.join(FIGS, "teaser_slim.png"),
-                    "Left: a random model that ignores the action gets more harmful as joints are added.",
+                    "Right: a random model that ignores the action gets more harmful as joints are added.",
                     "Random minus trained model, arms of 1-4 joints: 5, 28, 133, 357 mm. The trained model avoids it.")
 
     # -- 4. the other help -------------------------------------------------
@@ -120,7 +120,7 @@ def main():
     # -- 8. the claim ----------------------------------------------------------
     f += card(["A competent teacher can be taken away.",
                "A body model is worth its content."],
-              ["Learned Body Models and Withdrawn Teachers  -  2026"], hold=6.0)
+              ["Withdrawn Teachers and Learned Body Models  -  2026"], hold=6.0)
 
     dest = os.path.join(OUT, "explainer_v4.mp4")
     imageio.mimwrite(dest, f, fps=FPS, quality=7, macro_block_size=1)
@@ -130,3 +130,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

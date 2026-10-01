@@ -106,13 +106,13 @@ lines = [r"\begin{tabular}{@{}llrrrrrrr@{}}", r"\toprule", r" & & 2k & 3k & 4k &
 for body, unit in (("elbow", "myoElbow (mrad)"), ("finger", "myoFinger (mm)")):
     sw = sweep(body)
     if body == "finger": lines.append(r"\midrule")
-    for k, (name, x, y) in enumerate((("total", "ab", "con"), ("teacher", "sa", "con"), ("loss term", "ab", "sa"))):
+    for k, (name, x, y) in enumerate((("total", "ab", "con"), ("teacher", "sa", "con"), ("imitation term", "ab", "sa"))):
         cs = []
         for tw in TWS:
             a, sa = sw["dip"][tw]; src = {"ab": a, "sa": sa, "con": sw["dcon"]}
             v = [d(src[x], s, tw) - d(src[y], s, tw) for s in S12]; c = ci(v)
             cs.append("$%+.1f%s$" % (c[0], "^{*}" if sig(c) else ""))
-            NUM["slim_dip_%s_%s_%d" % (body, name.split()[0], tw)] = [round(z, 2) for z in c]
+            NUM["slim_dip_%s_%s_%d" % (body, {"imitation term": "loss"}.get(name, name), tw)] = [round(z, 2) for z in c]
         lines.append("%s & %s & %s\\\\" % (unit if k == 0 else "", name, " & ".join(cs)))
     # loss-term component minus teacher component, per t_w (paired): abrupt - 2*selfanchor + constant
     for tw in TWS:
