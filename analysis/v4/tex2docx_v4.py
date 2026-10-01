@@ -14,16 +14,20 @@ SRC = r"C:\Users\maurice\Desktop\robotic_research\wm_prior\tcds_v4"
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(SRC, "paper.docx")
 tex = io.open(os.path.join(SRC, "paper.tex"), encoding="utf-8").read()
 # the v3 tables II, IV and V are generated files pulled in with \input
-tex = re.sub(r"\\input\{(tables/[a-z]+)\}",
+tex = re.sub(r"\\input\{(tables/[a-z_]+)\}",
              lambda m: io.open(os.path.join(SRC, m.group(1) + ".tex"), encoding="utf-8").read(), tex)
 assert "\\input{" not in tex
 # v3 cleanups the v2 converter did not need
 tex = re.sub(r"\\begin\{equation\}.*?\\end\{equation\}",
-             "\n\nL_π = q·L_SAC + c·‖tanh μ_student(o) − tanh μ_teacher(o)‖²,   (1)\n\n", tex, flags=re.S)
+             "\n\nL_π = L_SAC + (c/|A|)·‖tanh μ_student(o) − tanh μ_teacher(o)‖²,   (1)\n\n", tex, flags=re.S)
 tex = tex.replace("\\IEEEtriggeratref{18}", "")
+tex = tex.replace("$^{\\dagger}$", "†").replace("{\\scriptsize", "{")
+tex = tex.replace("$t_w\\in\\{2000,3000,\\dots,8000\\}$", "t_w = 2000, 3000, …, 8000")
+tex = tex.replace("\\dots", "…")
+tex = tex.replace("\\begin{itemize}", "\n\n").replace("\\end{itemize}", "\n\n").replace("\\item ", "\n\n• ")
 tex = tex.replace("\\quad ", "   ").replace("^\\ddagger", "‡").replace("\\ddagger", "‡").replace("^{*\\ddagger}", "*‡")
 aux = io.open(os.path.join(SRC, "paper.aux"), encoding="utf-8").read()
-bbl = io.open(os.path.join(SRC, "paper.bbl"), encoding="utf-8").read()
+bbl = io.open(os.path.join(SRC, "paper.bbl"), encoding="utf-8").read().replace("\\,", "")
 
 # ---------- label and citation numbers from the .aux ----------
 LAB = {}

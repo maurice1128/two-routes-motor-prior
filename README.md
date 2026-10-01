@@ -1,28 +1,22 @@
-# Given and Taken Away
+# Learned Body Models and Withdrawn Teachers
 
 Code, launchers, analysis and audit scripts for
 
-> **Given and Taken Away: What a Body Model and a Teacher Leave a Muscle-Driven Learner.**
+> **Learned Body Models and Withdrawn Teachers in Muscle-Driven Motor Learning.**
 > Manuscript in preparation for *IEEE Transactions on Cognitive and Developmental Systems*; not posted to any preprint server.
-> (Earlier titles: *What a Motor Prior Is Worth*; *Two Routes to a Motor Prior*.)
+> (Earlier titles: *Given and Taken Away*; *What a Motor Prior Is Worth*; *Two Routes to a Motor Prior*.)
 
 **Project page:** https://maurice1128.github.io/projects/motor-prior.html
-**Paper:** [`paper/given_and_taken_away.pdf`](paper/given_and_taken_away.pdf) (LaTeX source, generated tables and figures alongside it).
+**Paper:** [`paper/learned_body_models_withdrawn_teachers.pdf`](paper/learned_body_models_withdrawn_teachers.pdf) (LaTeX source, generated tables and figures alongside it).
 
 ---
 
 ## The study
 
-One soft actor-critic learner on six muscle-driven bodies -- myoElbow (1 joint, six muscles, mrad), myoFinger (4 joints, five muscles, mm) and four planar muscle arms of one to four joints (mm) -- is given one of two kinds of help, each against a random counterpart, and the help is then taken away. At least twelve matched seeds per condition (24 on the 3- and 4-joint arms); every run is scored by the mean of its held-out evaluations at 90k-100k steps; paired-*t* 95 % intervals.
+One soft actor-critic learner on six muscle-driven bodies -- myoElbow (1 joint, six muscles, mrad), myoFinger (4 joints, five muscles, mm) and four planar muscle arms of one to four joints (mm). Twelve matched seeds per condition (24 on the 3- and 4-joint arms), paired-*t* 95 % intervals, held-out targets. Every claim is checked under two endpoints (mean of the evaluations at 90k-100k, and the single 100k evaluation) and only claims that hold under both are made (`analysis/v4/robust_v4.py`, `analysis/v4/make_slim.py`).
 
-| | what it is | where it comes from |
-|---|---|---|
-| **Body model** | a frozen forward model `(s,a) -> s'` used for short-horizon Dyna rollouts; the imagined reward is the environment's analytic reward | learned once from reward-free Ornstein-Uhlenbeck babbling (`src/build_prior.py`), then frozen |
-| **Teacher** | a frozen actor attached through an imitation term `(c/|A|) * ||tanh mu_s - tanh mu_T||^2`, added to the student's own gradient or replacing it until withdrawal | T1: a model-free actor after 30k rewarded steps; T2 (finger): the actor of the best of twelve 100k body-model runs |
-
-Taking the teacher away is controlled with a *self-anchor*: the teacher is replaced by a frozen copy of the student, which keeps the imitation term and removes only the teacher. Taking the body model away is compared with a never-had learner that trains the same way after withdrawal (`purge` vs `blank`, `matched` vs `blank64`).
-
-Main results, all in the paper with intervals: a learner whose teacher is withdrawn is not detectably worse than one never guided on either MyoSuite body (on the finger it keeps most of the teacher's benefit; the elbow is also run to 200k); the babble-trained body model beats model-free learning and a random model on most bodies; a teacher is worth its competence.
+* **Body model.** A frozen forward model learned once from reward-free babbling, used for short Dyna rollouts, is compared with a random model in the identical machinery. The gap between them grows with joint count: 5, 28, 133 and 357 mm on planar arms of one to four joints.
+* **Teacher.** A frozen actor joined through an imitation term is withdrawn at 2k-8k steps. On myoFinger, with a competent teacher, the withdrawn learner keeps at least 60 % of the teacher's benefit. A *self-anchor* (the teacher replaced by a frozen copy of the student) shows that the drop at withdrawal is lost teacher knowledge when the teacher is withdrawn early and the change of objective when it is withdrawn later.
 
 ---
 
@@ -53,7 +47,9 @@ launchers/                   the invocations behind each table (PowerShell, resu
 analysis/
   v4/common.py               data access and statistics (late-mean endpoint) used by every v4 script
   v4/make_tables_v4.py, v4/extra_v4.py, v4/long200k.py, v4/arm4_bm.py   every table and quoted number -> v4/numbers.json
-  v4/make_figs_v4.py         the four figures; v4/plateau_v4.py the convergence check; v4/count_runs_v4.py run count
+  v4/make_slim.py, v4/slim_extra.py, v4/robust_v4.py   the slim paper's tables, primary family (Holm) and two-endpoint screen
+  v4/make_figs_slim.py       the three figures of the paper; v4/count_runs_slim.py run count (1,056 runs)
+  v4/make_figs_v4.py, v4/plateau_v4.py, v4/count_runs_v4.py   the full v4 draft before subtraction
   v4/audits/audit_v4.py      checks every decimal in the prose and every table cell against numbers.json and raw JSON
   v3/make_tables_v3.py, v3/make_table_replace.py   the previous version's tables (kept for the record)
   v3/make_figs_v3.py         the three figures

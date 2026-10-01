@@ -21,6 +21,10 @@ def add(x):
     elif isinstance(x, (int, float)):
         pool.add(round(abs(float(x)), 2))
 add(list(NUM.values()))
+for v in NUM.values():
+    if isinstance(v, dict):
+        for w in v.values():
+            add(w) if not isinstance(w, dict) else [add(z) for z in w.values()]
 
 # ---- recomputed here, independently of the table generator
 def pc(x, y, seeds, f=end):
@@ -58,6 +62,7 @@ for k in CONST: pool.add(round(k, 2))
 tex = io.open(os.path.join(V4, "paper.tex"), encoding="utf-8").read()
 body = tex.split("\\begin{document}")[1]
 body = re.sub(r"%.*", "", body)
+body = re.sub(r"\\includegraphics\[[^\]]*\]", "", body)
 bad = []; n = 0
 for m in re.finditer(r"(?<![\w{.])[+\-]?\d+\.\d+", body):
     x = round(abs(float(m.group())), 2); n += 1
@@ -77,13 +82,22 @@ for v in NUM.values():
 conf = [t for t in late if t[0] in bym and t not in bym[t[0]]]
 print("late_vs_100k triples:", len(late), "| also in numbers.json:", hit, "| same mean but different interval:", len(conf), conf[:5])
 
-# ---- (3) table cells
+# ---- (3) table cells (slim tables print one decimal)
+pool1 = {round(x, 1) for x in pool}
+def addv1(x):
+    if isinstance(x, dict):
+        for y in x.values(): addv1(y)
+    elif isinstance(x, (list, tuple)):
+        for y in x: addv1(y)
+    elif isinstance(x, (int, float)) and not isinstance(x, bool):
+        pool1.add(round(abs(float(x)), 1))
+addv1(list(NUM.values()))
 cells = 0; miss = []
 for f in os.listdir(os.path.join(V4, "tables")):
     if f == "replace.tex": continue
     s = io.open(os.path.join(V4, "tables", f), encoding="utf-8").read()
     for m in re.finditer(r"[+\-]?\d+\.\d+", s):
         cells += 1; x = round(abs(float(m.group())), 2)
-        if x not in pool:
+        if x not in pool and not (f.startswith("slim_") and any(abs(x - p) <= 0.0501 for p in pool)):
             miss.append((f, m.group()))
 print("table numbers checked:", cells, "| not in numbers.json/recomputed:", len(miss), miss[:20])

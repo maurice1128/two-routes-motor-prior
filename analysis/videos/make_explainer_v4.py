@@ -81,9 +81,9 @@ def main():
     f += st.duo(A("prior"), A("randprior"), "babble-trained model", "RANDOM model, same loop",
                 "Identical machinery. Only the model's content differs.",
                 "n=12:  -50.11 mm [-64.54, -35.68]  in favour of the trained model", T[:2])
-    f += image_card(os.path.join(FIGS, "joint_series.png"),
-                    "Planar arms of 1-4 joints: the body model helps on every arm, more the more joints.",
-                    "10% of the model-free error on one joint, 47% on four. A random model's harm grows faster.")
+    f += image_card(os.path.join(FIGS, "teaser_slim.png"),
+                    "Left: what the body model has learned matters more the more joints the body has.",
+                    "Random model minus trained model, planar arms of 1-4 joints:  5, 28, 133, 357 mm.")
 
     # -- 4. the other help -------------------------------------------------
     f += card(["Help two: a teacher."],
@@ -98,25 +98,18 @@ def main():
               ["After 2,000 to 8,000 guided steps, on both MyoSuite bodies."])
     f += image_card(os.path.join(FIGS, "withdrawal_curves_v4.png"),
                     "Withdrawn (dashed): a sharp drop, then recovery. Never guided: grey. Teacher kept: red.",
-                    "Finger: 43 mm ahead of never guided, 70% of the teacher's benefit kept. Elbow: level.")
-    f += card(["No dependence."],
+                    "Finger: 43 mm ahead of never guided; at least 60% of the teacher's benefit kept.")
+    f += card(["No lasting deficit."],
               ["On neither body does the withdrawn learner end detectably",
-               "worse than one never guided. On the elbow, trained to 200k,",
-               "any deficit is under a quarter of what the teacher was worth."],
-              hold=5.0)
-    f += card(["The drop is the change of objective,", "not forgetting."],
-              ["Keep the imitation term but point it at a frozen copy",
-               "of the student: most of the drop disappears."],
+               "behind a learner that was never guided."],
               hold=4.5)
-    f += image_card(os.path.join(FIGS, "sweep_components_v4.png"),
-                    "Left: the teacher's share of the drop (blue) shrinks the longer it was attached.",
-                    "Right: at the end, the withdrawn learner (green) is level on the elbow, far ahead on the finger.")
-
-    # -- 6. the body model taken away --------------------------------------
-    f += card(["A body model is a tool, not a lesson."],
-              ["Its benefit lasts mainly while it imagines. Withdrawn, about half",
-               "remains on the finger; none is detected on the elbow or the four-joint arm."],
+    f += card(["The drop after withdrawal:", "lost knowledge early, the change of objective later."],
+              ["Control: keep the imitation term, but point it at a frozen copy of the student.",
+               "Early, the student loses what the teacher knew; later, it has absorbed it."],
               hold=5.0)
+    f += image_card(os.path.join(FIGS, "dip_slim.png"),
+                    "Blue: lost teacher knowledge.  Red: the deleted imitation term.",
+                    "Withdrawn early, the drop is mostly blue; withdrawn later, mostly red.")
 
     # -- 7. where it stops ---------------------------------------------------
     f += card(["Where this stops."],
@@ -125,10 +118,10 @@ def main():
               hold=4.5)
 
     # -- 8. the claim ----------------------------------------------------------
-    f += card(["No dependence on a teacher.",
-               "A body model matters more,",
-               "the harder the body."],
-              ["Given and Taken Away  -  2026"], hold=6.0)
+    f += card(["What a body model has learned",
+               "matters more the more joints there are.",
+               "A competent teacher can be taken away."],
+              ["Learned Body Models and Withdrawn Teachers  -  2026"], hold=6.0)
 
     dest = os.path.join(OUT, "explainer_v4.mp4")
     imageio.mimwrite(dest, f, fps=FPS, quality=7, macro_block_size=1)
