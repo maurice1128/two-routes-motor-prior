@@ -46,7 +46,7 @@ for lab, nj, B, seeds, key in BODIES:
     rows.append("%s & %d & %s \\\\" % (lab, len(seeds), " & ".join(cells)))
 io.open(os.path.join(OUTT, "slim_model.tex"), "w", encoding="utf-8").write("\n".join(
     [r"\begin{tabular}{@{}lrlll@{}}", r"\toprule",
-     r"Body & $n$ & trained $-$ random model & trained $-$ \texttt{blank} & trained $-$ \texttt{blank64}\\", r"\midrule"]
+     r"Body & $n$ & Trained $-$ random & Trained $-$ \texttt{blank} & Trained $-$ \texttt{blank64}\\", r"\midrule"]
     + rows + [r"\bottomrule", r"\end{tabular}"]) + "\n")
 
 # joint-count trend of the trained-vs-random gap (arms), both endpoints
@@ -88,9 +88,9 @@ for body, unit in (("elbow", "myoElbow (mrad), T1"), ("finger", "myoFinger (mm),
     rows.append("%s & %s \\\\" % (unit, " & ".join(cells)))
 io.open(os.path.join(OUTT, "slim_teacher.tex"), "w", encoding="utf-8").write("\n".join(
     [r"\begin{tabular}{@{}lrrrrrr@{}}", r"\toprule",
-     r" & \multicolumn{3}{c}{late mean (90--100k)} & \multicolumn{3}{c}{single 100k evaluation}\\",
+     r" & \multicolumn{3}{c}{Late mean (90--100k)} & \multicolumn{3}{c}{Single 100k evaluation}\\",
      r"\cmidrule(lr){2-4}\cmidrule(lr){5-7}",
-     r" & worth & withdrawn$-$never & kept & worth & withdrawn$-$never & kept\\", r"\midrule"]
+     r"Body, teacher & Worth & Withdrawn$-$never & Kept & Worth & Withdrawn$-$never & Kept\\", r"\midrule"]
     + rows + [r"\bottomrule", r"\end{tabular}"]) + "\n")
 
 # 200k elbow: non-inferiority at 190-200k
@@ -102,7 +102,7 @@ NUM["slim_200k_ni"] = [[lam, round(upper1([p + lam * w for p, w in zip(pooled, w
 
 # ---------------------------------------------------------------- Table: the drop at withdrawal, by t_w
 d = lambda r, s, tw: r[s][tw + 1000] - r[s][tw]
-lines = [r"\begin{tabular}{@{}llrrrrrrr@{}}", r"\toprule", r" & & 2k & 3k & 4k & 5k & 6k & 7k & 8k\\", r"\midrule"]
+lines = [r"\begin{tabular}{@{}llrrrrrrr@{}}", r"\toprule", r"Body & Component & \multicolumn{7}{c}{$t_w$ (steps)}\\", r"\cmidrule(lr){3-9}", r" & & 2k & 3k & 4k & 5k & 6k & 7k & 8k\\", r"\midrule"]
 for body, unit in (("elbow", "myoElbow (mrad)"), ("finger", "myoFinger (mm)")):
     sw = sweep(body)
     if body == "finger": lines.append(r"\midrule")

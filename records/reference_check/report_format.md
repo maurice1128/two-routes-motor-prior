@@ -1,0 +1,7 @@
+# Format audit summary (saved from agent output, 2026-10-03)
+
+MUST: (M1) Index Terms alphabetical; (M2) acknowledgment "The author" reveals single author -> "The author(s)" in review copy; (M3) "internal review" / "during revision" references a history reviewers cannot see -> describe as post hoc without history.
+
+SHOULD: US spelling (gray, stabilizes, self-modeling, millimeters, initialization/initialized, normalizers/normalization, neighboring, re-randomized, favor(s), analog); title-case subsection headings; bold run-in heads; "Fig. 1(a)"; "Section" not "Sec."; figure text >= 8 pt; vector/600 dpi preferred; color-only encodings (Fig. 3, Fig. 1); en dash in "90-100k"; Table I/II/III caption/heading details; decimal precision text vs tables; thousands notation; numerals for >= 10; serial commas; theta used twice (OU vs model params); define L_SAC, mu, o vs s; consistent \texttt names; define SE, SiLU, MBPO, APV; refs: [13] Farahmand name, [10] Küttler, venue abbreviations consistency, ICML ordinals, NeurIPS vol for [11], thin spaces in page numbers, "Art. no.", missing pages ([24] PMLR 100 pp. 66–75, [28], [32], RSS), capitalization after colon, [61] online format; cite MuJoCo, Adam, Holm.
+
+MINOR: abstract at 248/250; book locations; axis label case and k ticks; table marker conventions; Eq. (1) not cited; buffer units; underfull lines; unbalanced last page; PDF CreationDate shows +08'00' time zone; source comments; acknowledgment repetition.

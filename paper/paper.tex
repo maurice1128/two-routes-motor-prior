@@ -1,10 +1,6 @@
-% IEEE TCDS submission -- v4 slim-2 (2026-10-01), after the third council. Must-fix changes only:
-% primary family re-specified (retention threshold 50% fixed before testing; joint effect tested
-% between bodies), the random model described as action-insensitive (verified), the one-joint arm's
-% reach floor disclosed, the drop at withdrawal corrected across t_w and scoped, and the human
-% mapping corrected (no retention-test analogy; prescriptive feedback, not physical guidance).
-% Numbers: numbers.json (make_slim.py, slim_extra.py, slim2_stats.py, long200k.py);
-% check: audits/audit_v4.py. Previous text: paper_slim1.tex; before subtraction: paper_v4_full.tex.
+\pdfinfoomitdate=1
+\pdftrailerid{}
+\pdfsuppressptexinfo=-1
 \documentclass[journal]{IEEEtran}
 
 \usepackage[hidelinks,pdftitle={Withdrawn Teachers and Learned Body Models in Muscle-Driven Motor Learning}]{hyperref}
@@ -20,7 +16,7 @@
 \renewcommand{\floatpagefraction}{0.85}
 \renewcommand{\dblfloatpagefraction}{0.85}
 \setcounter{topnumber}{3}
-\setcounter{dbltopnumber}{3}
+\setcounter{dbltopnumber}{2}
 \setcounter{totalnumber}{5}
 \raggedbottom
 
@@ -30,8 +26,6 @@
 
 \title{Withdrawn Teachers and Learned Body Models\\ in Muscle-Driven Motor Learning}
 
-% Double-anonymous review (TCDS policy since October 2024): no author,
-% affiliation, e-mail or funding until acceptance.
 \author{Anonymous Author(s)}
 
 \markboth{IEEE Transactions on Cognitive and Developmental Systems}%
@@ -64,7 +58,7 @@ model avoids this harm.
 \end{abstract}
 
 \begin{IEEEkeywords}
-Developmental robotics, internal models, guidance, musculoskeletal control,
+Developmental robotics, guidance, internal models, musculoskeletal control,
 reinforcement learning.
 \end{IEEEkeywords}
 
@@ -85,11 +79,12 @@ experience.
 Both kinds of help raise a question that existing studies leave open. For the
 teacher, the question is what happens when it is taken away. Motor-learning
 research holds that guidance can leave a learner dependent on it
-\cite{salmoni1984,schmidt1992}, and teacher--student pipelines in robotics cut
-a distillation term to make the student independent
-\cite{schmitt2018,agarwal2022}. Cutting the term removes the teacher's
-knowledge and changes the student's objective at the same moment, so a
-collapse at weaning \cite{agarwal2022} cannot be attributed to either. For the
+\cite{salmoni1984,schmidt1992}, and teacher--student pipelines in
+reinforcement learning anneal or cut a distillation term to make the student
+independent \cite{schmitt2018,agarwal2022}. Cutting the term removes the
+teacher's knowledge and changes the student's objective at the same moment;
+Agarwal et al.~\cite{agarwal2022} attribute a collapse at weaning to the change
+of objective, but the design cannot separate the two. For the
 body model, the question is \emph{why} it helps. Imagined rollouts add data
 whatever the model contains, and an inaccurate model can make model-based
 learning worse than model-free \cite{janner2019,voelcker2022}; how much of a
@@ -105,11 +100,11 @@ model has learned.
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=0.9\textwidth]{figs/teaser_slim.png}
+\includegraphics[width=\textwidth]{figs/teaser_slim.png}
 \caption{The two findings. (a) A competent teacher can be taken away: on
-myoFinger, learners whose teacher is withdrawn (dashed) drop sharply, recover,
-and end with lower error than a learner never guided (grey), the more so the
-longer they were guided; mean across 12 seeds, band $\pm1$~SE, the grey band is
+myoFinger, learners whose teacher is withdrawn at 2k (dashed) or 8k (dash-dotted) drop sharply, recover,
+and end with lower error than a learner never guided (gray, solid), the more so the
+longer they were guided; mean across 12 seeds, band $\pm1$ standard error (SE), the gray band is
 the scored window; first evaluation at 1{,}000 steps. (b) A body model is worth its content: the random model's
 error minus the trained model's error, on planar muscle arms of one to four
 joints, under both endpoints (bars: mean; whiskers: 95\% interval; $n=12$ on
@@ -126,31 +121,31 @@ muscle-driven bodies (Fig.~\ref{fig:teaser}). The contributions are:
 learner behind one never guided: on the finger the share of the teacher's
 benefit the withdrawn learner keeps rises with the time it was taught, and is
 more than half on average over the withdrawal times tested
-(Sec.~\ref{sec:withdraw});
+(Section~\ref{sec:withdraw});
 \item a self-anchor control showing that on the finger, after 4,000 or more
 steps of attachment, most of the drop that follows withdrawal is the removed
 imitation term rather than the teacher's not-yet-absorbed knowledge
-(Sec.~\ref{sec:dip});
+(Section~\ref{sec:dip});
 \item evidence that a body model is worth its content: on a series of planar
 arms, imagined experience from a random model, whose predictions barely depend
 on the action, becomes increasingly harmful as joints are added, while the
-babble-trained model avoids this harm (Sec.~\ref{sec:model}).
+babble-trained model avoids this harm (Section~\ref{sec:model}).
 \end{itemize}
 The ten primary tests hold under two endpoints and survive a Holm correction
-(Sec.~\ref{sec:stats}). Code and data will be released on acceptance.
+(Section~\ref{sec:stats}). Code and data will be released on acceptance.
 
 \section{Related Work}
 
 \textbf{Guidance and its withdrawal.} The guidance hypothesis
 \cite{salmoni1984,schmidt1989,schmidt1992} holds that frequent augmented
 feedback guides performance during acquisition but can degrade learning;
-high-frequency physical guidance gives the poorest retention in one test
+high-frequency physical guidance gives the poorest retention in one study
 \cite{winstein1994}, and reduced knowledge of results improves delayed
 retention in another \cite{winstein1990}. The evidence is mixed: one
-meta-analysis finds the degrading effect limited to laboratory tasks,
-parameter learning and extensive practice \cite{marschall2007}, a later one
+meta-analysis finds the degrading effect limited to particular laboratory
+tasks and extensive practice \cite{marschall2007}, a later one
 finds no reliable benefit of reduced feedback frequency \cite{mckay2022}, and
-children given reduced feedback learn worse \cite{sullivan2008}. Performance
+children given reduced feedback retain a skill less well \cite{sullivan2008}. Performance
 while guided is not the same as what has been learned
 \cite{schmidt1992,soderstrom2015}. Human studies corrupt or remove the
 information in a feedback channel while keeping the channel
@@ -158,52 +153,54 @@ information in a feedback channel while keeping the channel
 teacher that sees privileged state is distilled into a student on the
 student's own rollouts \cite{chen2019lbc,lee2020,miki2022,kumar2021}, and the
 distillation term is annealed or cut to make the student independent
-\cite{schmitt2018,agarwal2022}. Supervised distillation uses the student itself
-or a random network as the teacher to separate what the term does from what the
+\cite{schmitt2018,agarwal2022}. Knowledge distillation uses the student
+itself, a poorly trained network or a random network as the teacher to separate what the term does from what the
 teacher knows \cite{yuan2020,sarnthein2023}; a term toward the learner's own
-earlier policy stabilises fine-tuning \cite{li2023proto,luo2023,zhao2022}, and
-a cloned policy fine-tuned by off-policy reinforcement often degrades when the
-constraint is removed \cite{nair2020,uchendu2023,zhang2023}. What is missing is
+earlier policy \cite{li2023proto,luo2023} or toward logged behavior
+\cite{zhao2022} stabilizes fine-tuning, and a policy pretrained offline or by
+cloning can degrade early in off-policy fine-tuning, as its critic gives a poor
+learning signal or its constraint is weakened
+\cite{nair2020,uchendu2023,zhang2023}. What is missing is
 a comparison of the withdrawn student with one never guided, with the teacher's
 knowledge held apart from the change of objective.
 
 \textbf{Body models.} Developmental robotics \cite{lungarella2003,asada2009,cangelosi2015}
 treats motor babbling as a way to learn forward models of the self
 \cite{dearden2005}, and intrinsic motivation as what drives it
-\cite{oudeyer2007}; self-modelling \cite{bongard2006} and goal babbling
+\cite{oudeyer2007}; self-modeling \cite{bongard2006} and goal babbling
 \cite{rolf2010} learn body models by directed exploration. In model-based
 reinforcement learning, World Models \cite{ha2018} trains a model once from
 random rollouts; the Dreamer series \cite{hafner2020,hafner2021,hafner2025} and
-TD-MPC2 \cite{hansen2024} keep the model learning online; MBPO
+TD-MPC2 \cite{hansen2024} keep the model learning online; model-based policy optimization (MBPO)
 \cite{janner2019} branches short rollouts from real states. Plan2Explore
-\cite{sekar2020} and APV \cite{seo2022} pretrain a model without task reward;
+\cite{sekar2020} and action-free pre-training from videos (APV) \cite{seo2022} pretrain a model without task reward;
 offline methods \cite{kidambi2020,yu2020,yu2021} fit a model to logged,
 rewarded data. Muscle world models are co-learned with the skill
 \cite{feng2023,kim2025}, and frozen models learned from reward-free actuation
-drive soft and muscle-driven bodies by planning or model-only learning
+are used to plan or to train controllers for soft and muscle-driven bodies
 \cite{berdica2024,wu2024modex,zheng2025}. Model error can make model-based
-learning worse than model-free, more so in higher dimension
-\cite{janner2019,voelcker2022}. These studies evaluate a model against
+learning worse than model-free \cite{janner2019,voelcker2022}, more so as
+task-irrelevant state dimensions are added \cite{voelcker2022}. These studies evaluate a model against
 model-free learning; a comparison with a model that has learned nothing, in the
 same machinery and across bodies of increasing complexity, is not reported.
 
 \section{Method}
 
-\subsection{Bodies, task and learner}
+\subsection{Bodies, Task, and Learner}
 \texttt{myoElbowPose1D6M} is a one-joint elbow driven by six muscles; error is
 a joint-angle error in milliradians (mrad). \texttt{myoFingerReachRandom-v0}
 is a four-joint index finger driven by five muscles; error is a Euclidean
-fingertip error in millimetres (mm). Both are used with MyoSuite dynamics
+fingertip error in millimeters (mm). Both are used with MyoSuite dynamics
 \cite{caggiano2022}, a reach reward, a fixed start pose and eight training
 targets. Four planar arms of one, two, three and four revolute joints, driven
-by two, four, eight and ten MuJoCo muscles (antagonist pairs, biarticular from
+by 2, 4, 8, and 10 MuJoCo \cite{todorov2012} muscles (antagonist pairs, biarticular from
 three joints on), reach a planar fingertip target; error is in mm. Joint count,
 muscle count and biarticular muscles therefore change together along the arm
 series. On the one-joint arm the muscles turn the joint only to $\pm0.86$~rad
 of the $\pm2$~rad target range, so 10 of its 20 held-out targets are out of
 reach and its errors include a floor of about 57.8~mm; across arms only
 differences between conditions are compared, never absolute errors. Episodes
-are 100 steps; evaluation is greedy on twenty held-out targets disjoint from the
+are 100 steps; evaluation is greedy on 20 held-out targets disjoint from the
 training targets. One soft actor-critic (SAC) \cite{haarnoja2018,haarnoja2018b}
 learner is used in every condition: two hidden layers of 128 units,
 update-to-data ratio 2, batch 128, learning rate $3\times10^{-4}$, automatic
@@ -211,7 +208,7 @@ entropy temperature. Conditions differ only in what is added. The reward is
 given on every step in every condition, and every evaluation is made without
 any help.
 
-\subsection{The teacher and its withdrawal}
+\subsection{The Teacher and Its Withdrawal}
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{figs/schematic_withdrawal.png}
@@ -221,7 +218,7 @@ teacher and the imitation term; the self-anchor keeps the term but points it
 at a frozen copy of the student (blue), so only the teacher is gone. The
 teacher component is $\text{selfanchor}-\text{constant}$, the imitation-term
 component is $\text{abrupt}-\text{selfanchor}$, and the withdrawn learner is
-compared with one never guided (grey).}
+compared with one never guided (gray).}
 \label{fig:schematic}
 \end{figure}
 The teacher is a frozen actor. The student's actor loss is
@@ -230,7 +227,10 @@ The teacher is a frozen actor. The student's actor loss is
  + \frac{c}{|\mathcal{A}|}\big\|\tanh\mu_{\mathrm{student}}(o) - \tanh\mu_{\mathrm{teacher}}(o)\big\|^2 ,
 \label{eq:loss}
 \end{equation}
-on replayed observations $o$, where $|\mathcal{A}|$ is the number of muscles;
+on replayed observations $o$ (the state $s$ together with the target), where
+$\mathcal{L}_{\mathrm{SAC}}$ is the standard SAC actor loss \cite{haarnoja2018b},
+$\mu$ is the pre-squashing mean of each actor, and $|\mathcal{A}|$ is the number
+of muscles;
 $c=1$ while the teacher is attached. The imitation term is high-frequency
 prescriptive feedback about the action, applied to replayed states; the teacher
 never moves the student in the environment, so it is closer to knowledge of
@@ -238,9 +238,9 @@ performance than to physical guidance. On the elbow the teacher (T1) is the
 terminal actor of a model-free run of 30k rewarded steps on a seed outside the
 study. On the finger, the corresponding actor barely moves (169.1~mm held-out
 against 172.3 for a zero-activation policy), so the finger teacher (T2) was
-chosen to be competent: the terminal actor of the best of twelve 100k
-body-model runs (35.6~mm; the twelve range from 35.6 to 85.3). One student
-shares its initialisation seed with that run; excluding it changes no
+chosen to be competent: the terminal actor of the best of 12 100k
+body-model runs (35.6~mm; the 12 range from 35.6 to 85.3). One student
+shares its initialization seed with that run; excluding it changes no
 conclusion.
 
 At step $t_w\in\{2000,3000,\dots,8000\}$ the teacher is withdrawn.
@@ -262,18 +262,18 @@ holds what the student has absorbed by $t_w$, so the teacher component measures
 only what the teacher still has to add, and it shrinks with attachment partly
 by construction.
 
-\subsection{The body model and its control}
+\subsection{The Body Model and Its Control}
 The body model is a forward model $f_\theta(s,a)\mapsto s'$, a two-layer
 256-unit network trained once on reward-free Ornstein--Uhlenbeck muscle
 activations ($10^5$ transitions on the elbow, $2\times10^5$ on the other
-bodies), then frozen. It is used for Dyna \cite{sutton1991} rollouts of three
+bodies), then frozen. It is used for Dyna-style \cite{sutton1991} rollouts of three
 steps branched from 200 real states every 100 environment steps; the reward at
 an imagined state is the environment's analytic reach reward, computed with the
 simulator's forward kinematics. Each update draws 64 real and 64 imagined
 transitions. Conditions: \texttt{prior} uses the trained model;
-\texttt{randprior} uses a randomly initialised network in identical machinery
+\texttt{randprior} uses a randomly initialized network in identical machinery
 (one random network per body, shared by all seeds, as the trained model is one
-checkpoint per body), with the trained model's input and output normalisers (on the one- and
+checkpoint per body), with the trained model's input and output normalizers (on the one- and
 four-joint arms those of an earlier build, which differ by at most 0.02
 standard deviations). Its predictions barely depend on the action: across the
 four arms, a change of action moves its predicted joint state 2--4\% as much as
@@ -281,58 +281,58 @@ it moves the trained model's. \texttt{blank} is SAC alone with 128 real
 transitions per update; \texttt{blank64} uses 64 real transitions, each
 repeated once, the real-data content of a Dyna update without a model.
 
-\subsection{Endpoints and statistics}
+\subsection{Endpoints and Statistics}
 \label{sec:stats}
 Each run lasts 100{,}000 steps and is evaluated every 2{,}000 steps (every
 1{,}000 in the withdrawal conditions). Final performance is reported under two
 endpoints: the mean of the six evaluations at 90k--100k (the \emph{late mean})
-and the single evaluation at 100k. The late mean was adopted after an internal
-review because single evaluations of one run move by several mrad or mm between
-neighbouring checkpoints; claims about final performance are made only when
-they hold under both. The seed is the unit of analysis: twelve matched seeds
-per condition, twenty-four on the three- and four-joint arms, paired contrasts,
+and the single evaluation at 100k. The late mean is used because single evaluations of one run move by several
+mrad or mm between neighboring checkpoints; it was chosen after the
+single-evaluation results had been seen, so claims about final performance are
+made only when they hold under both. The seed is the unit of analysis: 12 matched seeds
+per condition, 24 on the three- and four-joint arms, paired contrasts,
 paired-$t$ 95\% intervals; bold or $^*$ marks an interval excluding zero. A
 non-detected contrast is not evidence of no difference. The withdrawn learner
 keeps at least a fraction $r$ of the teacher's benefit if the one-sided 95\%
 upper bound of $(\text{abrupt}-\text{none}) - r\,(\text{constant}-\text{none})$,
 pooled over $t_w$ within each seed, is below zero. The threshold $r=0.5$, a
-conventional ``more than half'', was chosen during revision, after a
-descriptive bound had been computed; the largest $r$ that passes is reported
+conventional ``more than half'', was fixed after a descriptive bound had been
+computed; the largest $r$ that passes is reported
 as that descriptive bound.
 Effects of joint count are tested between bodies, with each arm's seeds
-independent (Welch $t$). The primary family, specified during revision, has
-ten tests: on the finger, the
+independent (Welch $t$). The primary family, specified after the exploratory
+analyses, has ten tests: on the finger, the
 withdrawn-minus-never-guided contrast, retention of at least half the teacher's
 benefit and the slope of the withdrawn learner's advantage over $t_w$; and the
 trained-minus-random gap on the three- and four-joint arms against the
 one-joint arm; each under both endpoints. All ten remain significant after a
-Holm correction (largest corrected $p=0.0018$). The drop at withdrawal is
+Holm correction \cite{holm1979} (largest corrected $p=0.0018$). The drop at withdrawal is
 measured from single evaluations; its components are compared per $t_w$ with a
 Holm correction across the seven $t_w$ of each body.
 
-\subsection{Implementation details}
-Actor and critics are SiLU networks, the twin critics with layer
-normalisation; $\gamma=0.99$, Polyak $\tau=0.005$, Adam, target entropy
-$-0.5\,|\mathcal{A}|$, gradient norm clipped at 10, real replay 200{,}000,
+\subsection{Implementation Details}
+Actor and critics are sigmoid linear unit (SiLU) networks, the twin critics with layer
+normalization; $\gamma=0.99$, Polyak $\tau=0.005$, Adam \cite{kingma2015}, target entropy
+$-0.5\,|\mathcal{A}|$, gradient norm clipped at 10, real replay 200{,}000 transitions,
 imagined replay 400{,}000, 1{,}000 warm-up steps. Episode time-outs are stored
 as terminal transitions; imagined transitions are never terminal. Babble data
-use $\theta=0.15$, $\sigma=0.4$, activations clipped to $[-1,1]$ and the pose
-re-randomised every 100 steps. A matched seed sets the network initialisation,
+use a mean-reversion rate of 0.15 and a noise scale of 0.4, activations clipped to $[-1,1]$ and the pose
+re-randomized every 100 steps. A matched seed sets the network initialization,
 replay sampling, the training environment and the order of target draws; runs
 are deterministic on CPU. The 1{,}056 runs behind the results take about
 1{,}100 single-thread CPU-hours.
 
 \section{Results}
 
-\subsection{A competent teacher can be taken away}
+\subsection{A Competent Teacher Can Be Taken Away}
 \label{sec:withdraw}
 \begin{table*}[!t]
 \caption{Taking the teacher away, pooled over the seven withdrawal times
 ($t_w=2000,\dots,8000$), $n=12$, under both endpoints. Worth:
-\texttt{constant}$-$\texttt{none}, what keeping the teacher gives over never
-being guided. Withdrawn$-$never: \texttt{abrupt}$-$\texttt{none}. Kept: the
+constant$-$none, what keeping the teacher gives over never
+being guided. Withdrawn$-$never: abrupt$-$none. Kept: the
 largest fraction of the teacher's worth that the withdrawn learner keeps at
-one-sided 95\% confidence (descriptive bound). Bold: interval excluding zero.}
+one-sided 95\% confidence (descriptive bound); --: no positive fraction passes. Brackets: 95\% interval; bold: interval excluding zero.}
 \label{tab:teacher}
 \centering\footnotesize
 \setlength{\tabcolsep}{4pt}
@@ -340,7 +340,7 @@ one-sided 95\% confidence (descriptive bound). Bold: interval excluding zero.}
 \end{table*}
 
 On the finger, with a competent teacher, the withdrawn learner ends far ahead
-of a learner never guided (Table~\ref{tab:teacher}, Fig.~\ref{fig:teaser}a):
+of a learner never guided (Table~\ref{tab:teacher}, Fig.~\ref{fig:teaser}(a)):
 \ci{-43.25}{-54.72}{-31.79}~mm pooled over the seven withdrawal times
 (single evaluation: \ci{-40.63}{-53.05}{-28.22}), against a teacher worth
 \ci{-61.71}{-74.98}{-48.44}. It keeps more the longer it was taught: per
@@ -368,7 +368,7 @@ teacher's full worth, though not smaller than half of it at the single
 evaluation (one-sided 95\%). The never-guided learner is still improving at
 200k, so this comparison is not made at a plateau.
 
-\subsection{The drop at withdrawal after longer attachment}
+\subsection{The Drop at Withdrawal After Longer Attachment}
 \label{sec:dip}
 \begin{table*}[!t]
 \caption{The rise in error over the 1{,}000 steps after withdrawal at $t_w$,
@@ -383,16 +383,16 @@ $^*$: interval excluding zero (uncorrected).}
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=0.85\textwidth]{figs/dip_slim.png}
+\includegraphics[width=\textwidth]{figs/dip_slim.png}
 \caption{The drop at withdrawal against the time the teacher was attached
-(Table~\ref{tab:dip}). After longer attachment the drop is mostly the removed
-imitation term (red); the teacher component (blue) shrinks as the student
+(Table~\ref{tab:dip}); total: black circles. After longer attachment the drop is mostly the removed
+imitation term (red triangles); the teacher component (blue squares) shrinks as the student
 absorbs the teacher, partly by construction of the self-anchor. Paired means
 with 95\% intervals, $n=12$.}
 \label{fig:dip}
 \end{figure*}
 
-Withdrawal is followed by a sharp rise in error (Fig.~\ref{fig:teaser}a), of
+Withdrawal is followed by a sharp rise in error (Fig.~\ref{fig:teaser}(a)), of
 \ci{+42.98}{+8.71}{+77.26}~mm to \ci{+72.54}{+58.26}{+86.82} on the finger and
 \ci{+32.05}{+12.70}{+51.41}~mrad to \ci{+80.56}{+23.00}{+138.12} on the elbow
 over the next 1{,}000 steps relative to keeping the teacher
@@ -402,34 +402,34 @@ to 46.48~mm, each significant after the Holm correction across $t_w$; the imitat
 term carries 65 to 94\% of the drop there (point estimates). On the elbow the
 teacher component is no longer detected from $t_w=5000$ on, and the imitation-term
 component exceeds it significantly after correction at $t_w=8000$. At
-$t_w=2000$ the point estimates favour the teacher component on both bodies
+$t_w=2000$ the point estimates favor the teacher component on both bodies
 (elbow: by \ci{+32.42}{+3.09}{+61.75}~mrad, uncorrected), but not significantly
 after correction. The self-anchor keeps the imitation term for the rest of
 training, so it shows what the drop consists of, not how to avoid it.
 
-\subsection{A body model is worth its content}
+\subsection{A Body Model Is Worth Its Content}
 \label{sec:model}
-\begin{table*}[!t]
+\begin{table*}[t]
 \caption{What the body model has learned, on six bodies: late-mean error of
 the trained body model minus a random model in identical machinery, and minus
 the two model-free baselines, with 95\% intervals. Bold: interval excluding
 zero. $\dagger$: also excluding zero, with the same sign, at the single 100k
-evaluation. Negative favours the trained model.}
+evaluation. Negative favors the trained model.}
 \label{tab:model}
 \centering\footnotesize
 \setlength{\tabcolsep}{4pt}
 \input{tables/slim_model}
 \end{table*}
 
-\begin{figure*}[!t]
+\begin{figure*}[t]
 \centering
-\includegraphics[width=0.95\textwidth]{figs/curves_slim.png}
+\includegraphics[width=\textwidth]{figs/curves_slim.png}
 \caption{Learning curves with the trained body model (blue), a random body
 model in the same machinery (cyan, dashed) and the two model-free baselines
-(grey). On the four-joint arm the random model ends far above model-free
+(gray solid: \texttt{blank}; gray dotted: \texttt{blank64}). On the four-joint arm the random model ends far above model-free
 learning while the trained model ends far below it. First evaluation at
 2{,}000 steps. Held-out error, mean,
-band $\pm1$~SE; grey band: the scored window.}
+band $\pm1$~SE; gray band: the scored window.}
 \label{fig:curves}
 \end{figure*}
 
@@ -441,7 +441,7 @@ uninformative imagination. On the planar arms the gap is
 \ci{-4.92}{-10.28}{+0.43}~mm on one joint (detected only at the single 100k
 evaluation), \ci{-28.42}{-41.59}{-15.25} on two,
 \ci{-132.89}{-183.14}{-82.64} on three and \ci{-357.20}{-406.71}{-307.69} on
-four (Fig.~\ref{fig:teaser}b). Compared between bodies it is larger on three
+four (Fig.~\ref{fig:teaser}(b)). Compared between bodies it is larger on three
 joints than on one by 127.96~mm (single evaluation 138.89) and on four joints
 than on one by 352.27~mm (344.68), $p<0.001$ under both endpoints. The trained
 model also beats the random one on both MyoSuite bodies, by
@@ -470,7 +470,7 @@ steps).
 
 \textbf{Taking a teacher away.} Every evaluation in this study is made without
 the teacher, so the drop that follows withdrawal is not a retention-test
-analogue: it is a decline during continued practice once the training signal
+analog: it is a decline during continued practice once the training signal
 changes. On the elbow the teacher's benefit does not outlast it, but no deficit
 relative to never being guided is detected. On the finger a competent
 teacher's benefit largely persists, the more so the longer the teacher was
@@ -494,12 +494,12 @@ data do not show that a correct model is worth more on harder bodies.
 \section{Limitations and Future Work}
 \label{sec:limits}
 The study is single-task reach in simulation, on deterministic, fully
-observed bodies, which favour a frozen forward model, and the imagined reward
+observed bodies, which favor a frozen forward model, and the imagined reward
 uses exact forward kinematics; partially observed bodies and a learned reward
 are the natural next test. The real replay buffer holds the whole run, so the
 benefit a withdrawn learner keeps includes guided-phase transitions that remain
 in its buffer; a buffer purged at withdrawal would separate the two. Each body
-has one teacher, and the finger's competent teacher is the best of twelve
+has one teacher, and the finger's competent teacher is the best of 12
 candidate runs; teachers of graded quality would map the benefit against
 competence. Along the arm series, joint count, muscle count and biarticular
 muscles change together, and the one-joint arm cannot reach half of its
@@ -521,12 +521,13 @@ model in the same machinery becomes increasingly harmful as joints are added,
 and the trained model avoids that harm.
 
 \section*{Acknowledgment}
-This work made extensive use of Claude (Anthropic), a large language model \cite{claude2026}; every section contains text it generated.
-Claude wrote and debugged the simulation, training, analysis and figure code;
-ran and audited the statistical analyses; and drafted and revised the text of
-every section, including the tables and figure captions. The author directed
+Claude (Anthropic), a large language model \cite{claude2026}, was used
+extensively in this work and generated text in every section: it wrote and
+debugged the simulation, training, analysis, and figure code; ran and audited
+the statistical analyses; and drafted and revised the text of every section,
+including the tables and figure captions. The author(s) directed
 the study, made the design, analysis and reporting decisions, and reviewed the
-results, and takes full responsibility for the content of this article.
+results, and take full responsibility for the content of this article.
 
 \bibliographystyle{IEEEtran}
 \bibliography{refs}
