@@ -27,7 +27,7 @@ for i, (name, segs) in enumerate(rows):
                     color="white" if c != C_N else "black")
 ax.axvline(TW, color="k", lw=0.8, ls="--")
 ax.text(TW + 0.12, 3.62, "$t_w$: teacher withdrawn", ha="left", va="bottom", fontsize=7)
-ax.annotate("student\nfrozen here", xy=(TW, 1.0), xytext=(1.45, 0.42), fontsize=6.3, ha="center",
+ax.annotate("student frozen", xy=(TW, 0.72), xytext=(1.2, 0.5), fontsize=6.0, ha="center", va="center",
             arrowprops=dict(arrowstyle="->", lw=0.6))
 
 

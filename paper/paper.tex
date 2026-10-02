@@ -7,7 +7,7 @@
 % check: audits/audit_v4.py. Previous text: paper_slim1.tex; before subtraction: paper_v4_full.tex.
 \documentclass[journal]{IEEEtran}
 
-\usepackage[hidelinks,pdftitle={Withdrawn Teachers and Learned Body Models}]{hyperref}
+\usepackage[hidelinks,pdftitle={Withdrawn Teachers and Learned Body Models in Muscle-Driven Motor Learning}]{hyperref}
 \usepackage{cite}
 \usepackage{graphicx}
 \usepackage{amsmath,amssymb}
@@ -24,7 +24,7 @@
 \setcounter{totalnumber}{5}
 \raggedbottom
 
-\newcommand{\ci}[3]{$#1\,[#2,\,#3]$}
+\newcommand{\ci}[3]{$#1$\,\allowbreak$[#2,\allowbreak\,#3]$}
 
 \begin{document}
 
@@ -521,7 +521,7 @@ model in the same machinery becomes increasingly harmful as joints are added,
 and the trained model avoids that harm.
 
 \section*{Acknowledgment}
-This work made extensive use of Claude (Anthropic), a large language model.
+This work made extensive use of Claude (Anthropic), a large language model \cite{claude2026}; every section contains text it generated.
 Claude wrote and debugged the simulation, training, analysis and figure code;
 ran and audited the statistical analyses; and drafted and revised the text of
 every section, including the tables and figure captions. The author directed
