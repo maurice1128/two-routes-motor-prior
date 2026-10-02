@@ -212,6 +212,18 @@ given on every step in every condition, and every evaluation is made without
 any help.
 
 \subsection{The teacher and its withdrawal}
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{figs/schematic_withdrawal.png}
+\caption{The teacher-withdrawal conditions. Until $t_w$ every guided learner
+imitates the teacher (red). At $t_w$ the withdrawn learner loses both the
+teacher and the imitation term; the self-anchor keeps the term but points it
+at a frozen copy of the student (blue), so only the teacher is gone. The
+teacher component is $\text{selfanchor}-\text{constant}$, the imitation-term
+component is $\text{abrupt}-\text{selfanchor}$, and the withdrawn learner is
+compared with one never guided (grey).}
+\label{fig:schematic}
+\end{figure}
 The teacher is a frozen actor. The student's actor loss is
 \begin{equation}
 \mathcal{L}_\pi = \mathcal{L}_{\mathrm{SAC}}
@@ -240,7 +252,7 @@ before $t_w$, where the weight is last written). The withdrawn learner is
 compared with \texttt{none} to ask whether it is left worse off than a learner
 never guided. The \emph{drop} at withdrawal is the rise in error over the
 1{,}000 steps after $t_w$ relative to \texttt{constant}; the self-anchor splits
-it: $\text{selfanchor}-\text{constant}$ is losing the teacher with the
+it (Fig.~\ref{fig:schematic}): $\text{selfanchor}-\text{constant}$ is losing the teacher with the
 objective kept (the \emph{teacher} component), $\text{abrupt}-\text{selfanchor}$
 is losing the imitation term (the \emph{imitation-term} component). On the elbow the
 drop is read from a separate set of runs with the same seeds and code,
