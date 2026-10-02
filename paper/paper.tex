@@ -110,7 +110,7 @@ model has learned.
 myoFinger, learners whose teacher is withdrawn (dashed) drop sharply, recover,
 and end with lower error than a learner never guided (grey), the more so the
 longer they were guided; mean across 12 seeds, band $\pm1$~SE, the grey band is
-the scored window. (b) A body model is worth its content: the random model's
+the scored window; first evaluation at 1{,}000 steps. (b) A body model is worth its content: the random model's
 error minus the trained model's error, on planar muscle arms of one to four
 joints, under both endpoints (bars: mean; whiskers: 95\% interval; $n=12$ on
 one and two joints, 24 on three and four). The random model's predictions
@@ -427,7 +427,8 @@ evaluation. Negative favours the trained model.}
 \caption{Learning curves with the trained body model (blue), a random body
 model in the same machinery (cyan, dashed) and the two model-free baselines
 (grey). On the four-joint arm the random model ends far above model-free
-learning while the trained model ends far below it. Held-out error, mean,
+learning while the trained model ends far below it. First evaluation at
+2{,}000 steps. Held-out error, mean,
 band $\pm1$~SE; grey band: the scored window.}
 \label{fig:curves}
 \end{figure*}

@@ -15,12 +15,15 @@ OUT = os.path.join(W, "tcds_v4", "figs")
 CK = list(range(2000, 100001, 2000))
 
 
-def arr(run, seeds): return np.array([[run[s][k] for k in CK] for s in seeds])
+CK1 = list(range(1000, 100001, 1000))   # withdrawal runs are evaluated every 1,000 steps
 
 
-def band(ax, y, label, color, ls="-"):
+def arr(run, seeds, steps=CK): return np.array([[run[s][k] for k in steps] for s in seeds])
+
+
+def band(ax, y, label, color, ls="-", steps=CK):
     m = y.mean(0); se = y.std(0, ddof=1) / math.sqrt(y.shape[0])
-    ax.plot(CK, m, ls, color=color, lw=1.2, label=label); ax.fill_between(CK, m - se, m + se, color=color, alpha=0.15, lw=0)
+    ax.plot(steps, m, ls, color=color, lw=1.2, label=label); ax.fill_between(steps, m - se, m + se, color=color, alpha=0.15, lw=0)
 
 
 def ci95(v):
@@ -41,9 +44,10 @@ ax.set_xticks([1, 2, 3, 4]); ax.set_xlabel("joints of the planar muscle arm")
 ax.set_ylabel("random model $-$ trained model\n(held-out error, mm)")
 ax.set_title("(b) a body model is worth its content"); ax.grid(alpha=0.3, axis="y"); ax.legend(frameon=False, loc="upper left")
 ax = axes[0]; sw = sweep("finger"); ax.axvspan(90000, 100000, color="0.85", lw=0, zorder=0)
-band(ax, arr(sw["none"], S12), "never guided", "0.25"); band(ax, arr(sw["con"], S12), "teacher kept", "tab:red")
-band(ax, arr(sw["arms"][2000][0], S12), "teacher withdrawn at 2k", "tab:green", "--"); band(ax, arr(sw["arms"][8000][0], S12), "teacher withdrawn at 8k", "tab:blue", "--")
-ax.set_xlim(0, 100000); ax.set_ylim(20, 175); ax.grid(alpha=0.3); ax.set_xlabel("environment steps"); ax.set_ylabel("held-out error (mm)")
+band(ax, arr(sw["none"], S12, CK1), "never guided", "0.25", steps=CK1); band(ax, arr(sw["con"], S12, CK1), "teacher kept", "tab:red", steps=CK1)
+band(ax, arr(sw["arms"][2000][0], S12, CK1), "teacher withdrawn at 2k", "tab:green", "--", steps=CK1)
+band(ax, arr(sw["arms"][8000][0], S12, CK1), "teacher withdrawn at 8k", "tab:blue", "--", steps=CK1)
+ax.set_xlim(0, 100000); ax.set_ylim(20, 185); ax.grid(alpha=0.3); ax.set_xlabel("environment steps"); ax.set_ylabel("held-out error (mm)")
 ax.set_title("(a) taking a competent teacher away (myoFinger)"); ax.legend(frameon=False)
 fig.tight_layout(); fig.savefig(os.path.join(OUT, "teaser_slim.png"), dpi=300); plt.close(fig)
 

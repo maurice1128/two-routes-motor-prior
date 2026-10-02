@@ -11,7 +11,7 @@ plt.rcParams.update({"font.size": 8})
 C_T, C_S, C_N = "#d62728", "#1f77b4", "#bdbdbd"
 TW, END = 3.0, 10.0
 
-fig, ax = plt.subplots(figsize=(3.5, 2.6))
+fig, ax = plt.subplots(figsize=(3.5, 2.35))
 rows = [("never guided\n(none)", [(0, END, C_N, "reward only")]),
         ("teacher kept\n(constant)", [(0, END, C_T, "reward + imitate teacher")]),
         ("self-anchor\n(selfanchor)", [(0, TW, C_T, ""), (TW, END, C_S, "reward + imitate\nfrozen student copy")]),
@@ -44,6 +44,6 @@ ax.set_xlabel("training steps", fontsize=7.5)
 ax.spines["bottom"].set_bounds(0, END)
 for s in ("top", "right", "left"):
     ax.spines[s].set_visible(False)
-fig.subplots_adjust(left=0.27, right=0.99, top=0.97, bottom=0.17)
+fig.subplots_adjust(left=0.27, right=0.99, top=0.97, bottom=0.19)
 fig.savefig(OUT, dpi=300); plt.close(fig)
 print("wrote", OUT)
