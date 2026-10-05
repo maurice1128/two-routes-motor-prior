@@ -69,6 +69,8 @@ def inline_runs(s):
     s = s.replace("\n", " ")
     s = re.sub(r"(?<!\\)%.*", "", s)
     s = re.sub(r"\s+", " ", s)
+    # footnotes become a bracketed note in the reading copy
+    s = re.sub(r"\\footnote\{((?:[^{}]|\{[^{}]*\})*)\}", lambda m: " [Note: " + m.group(1) + "]", s)
     # citations and refs
     s = re.sub(r"\\cite\{([^}]+)\}", lambda m: "[" + ", ".join(CITE.get(k.strip(), "?") for k in m.group(1).split(",")) + "]", s)
     s = re.sub(r"Sec\.~\\ref\{([^}]+)\}", lambda m: "Sec. " + LAB.get(m.group(1), "?"), s)

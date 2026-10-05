@@ -28,7 +28,7 @@ def cell(c, robust):
 E, F = core(); AR = arms()
 BODIES = [("myoElbow (mrad)", 1, E, S12, "elbow"), ("myoFinger (mm)", 4, F, S12, "finger")]
 for b, nj in (("arm1", 1), ("arm2", 2), ("arm3", 3), ("arm4", 4)):
-    A, s = AR[b]; BODIES.append(("%d-joint arm (mm)" % nj, nj, A, s, b))
+    A, s = AR[b]; BODIES.append(("%s-joint arm (mm)" % ["One", "Two", "Three", "Four"][nj - 1], nj, A, s, b))
 
 # ---------------------------------------------------------------- Table: the body model, six bodies
 rows = []
@@ -79,7 +79,7 @@ for body, unit in (("elbow", "myoElbow (mrad), T1"), ("finger", "myoFinger (mm),
         NUM["slim_wd_%s_kept_%s" % (body, e)] = kept
         # paired non-inferiority: deficit smaller than a fraction lam of the teacher's worth
         NUM["slim_wd_%s_ni_%s" % (body, e)] = [[lam, round(upper1([p + lam * w for p, w in zip(pooled, worth)]), 2)] for lam in (1.0, 0.5)]
-        cells += [cell(cw, False), cell(cp, False), ("$\\geq %d\\%%$" % kept) if kept else "--"]
+        cells += [cell(cw, False), cell(cp, False), ("$\\geq %d\\%%$" % kept) if kept else "n.s."]
     # per-t_w withdrawn-none, both endpoints
     NUM["slim_wd_%s_cells" % body] = {e: [[round(ci([f(sw["arms"][tw][0], s) - f(sw["none"], s) for s in S12])[0], 2),
                                            bool(sig(ci([f(sw["arms"][tw][0], s) - f(sw["none"], s) for s in S12])))] for tw in TWS] for e, f in EP.items()}
@@ -88,7 +88,7 @@ for body, unit in (("elbow", "myoElbow (mrad), T1"), ("finger", "myoFinger (mm),
     rows.append("%s & %s \\\\" % (unit, " & ".join(cells)))
 io.open(os.path.join(OUTT, "slim_teacher.tex"), "w", encoding="utf-8").write("\n".join(
     [r"\begin{tabular}{@{}lrrrrrr@{}}", r"\toprule",
-     r" & \multicolumn{3}{c}{Late mean (90--100k)} & \multicolumn{3}{c}{Single 100k evaluation}\\",
+     r" & \multicolumn{3}{c}{Late mean (90k to 100k)} & \multicolumn{3}{c}{Single 100k evaluation}\\",
      r"\cmidrule(lr){2-4}\cmidrule(lr){5-7}",
      r"Body, teacher & Worth & Withdrawn$-$never & Kept & Worth & Withdrawn$-$never & Kept\\", r"\midrule"]
     + rows + [r"\bottomrule", r"\end{tabular}"]) + "\n")

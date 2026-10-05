@@ -39,7 +39,7 @@ E, F = core(); AR = arms()
 # ---- Fig 1 teaser
 fig, axes = plt.subplots(1, 2, figsize=(7.16, 3.0), gridspec_kw={"width_ratios": [1.25, 1]})
 ax = axes[1]
-for k, (e, f, col, lab, hatch) in enumerate((("late", end, "tab:blue", "Mean over 90–100k", None),
+for k, (e, f, col, lab, hatch) in enumerate((("late", end, "tab:blue", "Mean over 90k to 100k", None),
                                              ("100k", lambda r, s: r[s][100000], "tab:orange", "Single 100k evaluation", "///"))):
     ms, es = [], []
     for b in ("arm1", "arm2", "arm3", "arm4"):
@@ -49,7 +49,7 @@ ax.set_xticks([1, 2, 3, 4]); ax.set_xlabel("Joints of the planar muscle arm")
 ax.set_ylabel("Random minus trained model\n(held-out error, mm)")
 ax.set_title("(b) A body model is worth its content"); ax.grid(alpha=0.3, axis="y"); ax.legend(frameon=False, loc="upper left")
 ax = axes[0]; sw = sweep("finger"); ax.axvspan(90000, 100000, color="0.85", lw=0, zorder=0)
-band(ax, arr(sw["none"], S12, CK1), "Never guided", "0.25", steps=CK1); band(ax, arr(sw["con"], S12, CK1), "Teacher kept", "tab:red", steps=CK1)
+band(ax, arr(sw["none"], S12, CK1), "Never guided", "0.25", steps=CK1); band(ax, arr(sw["con"], S12, CK1), "Teacher kept", "tab:red", ":", steps=CK1)
 band(ax, arr(sw["arms"][2000][0], S12, CK1), "Withdrawn at 2k", "tab:green", "--", steps=CK1)
 band(ax, arr(sw["arms"][8000][0], S12, CK1), "Withdrawn at 8k", "tab:blue", "-.", steps=CK1)
 ax.set_xlim(0, 100000); ax.set_ylim(20, 185); ax.grid(alpha=0.3); ax.set_xlabel("Environment steps"); ax.set_ylabel("Held-out error (mm)")
@@ -61,10 +61,10 @@ fig.tight_layout(); fig.savefig(os.path.join(OUT, "teaser_slim.png"), dpi=DPI); 
 fig, axes = plt.subplots(1, 3, figsize=(7.16, 2.9))
 A4, s4 = AR["arm4"]
 for ax, B, seeds, title, unit, ylim in ((axes[0], E, S12, "myoElbow (1 joint)", "mrad", (0, 150)), (axes[1], F, S12, "myoFinger (4 joints)", "mm", (20, 175)),
-                                       (axes[2], A4, s4, "4-joint arm ($n{=}24$)", "mm", (0, 600))):
+                                       (axes[2], A4, s4, "Four-joint arm ($n{=}24$)", "mm", (0, 600))):
     ax.axvspan(90000, 100000, color="0.85", lw=0, zorder=0)
     for k, name, col, ls in (("blank", "Model-free (blank)", "0.25", "-"), ("blank64", "Model-free, 64 real (blank64)", "0.55", ":"),
-                             ("prior", "Trained body model", "tab:blue", "-"), ("randprior", "Random body model", "tab:cyan", "--")):
+                             ("prior", "Trained body model", "tab:blue", "-."), ("randprior", "Random body model", "tab:cyan", "--")):
         band(ax, arr(B[k], seeds), name, col, ls)
     ax.set_xlim(0, 100000); ax.set_ylim(*ylim); ax.grid(alpha=0.3); ax.set_title(title); ax.set_xlabel("Environment steps")
     ax.set_ylabel("Held-out error (%s)" % unit); ax.set_xticks([0, 50000, 100000]); ax.xaxis.set_major_formatter(KFMT)
@@ -77,8 +77,8 @@ d = lambda r, s, tw: r[s][tw + 1000] - r[s][tw]
 for ax, body, unit in ((axes[0], "elbow", "mrad"), (axes[1], "finger", "mm")):
     sw = sweep(body)
     for k, (name, x, y, col, fmt) in enumerate((("Total (abrupt $-$ constant)", "ab", "con", "k", "o-"),
-                                               ("Teacher (selfanchor $-$ constant)", "sa", "con", "tab:blue", "s--"),
-                                               ("Imitation term (abrupt $-$ selfanchor)", "ab", "sa", "tab:red", "^:"))):
+                                               ("Teacher (selfanchor $-$ constant)", "sa", "con", "tab:red", "s--"),
+                                               ("Imitation term (abrupt $-$ selfanchor)", "ab", "sa", "tab:blue", "^:"))):
         ms, es = [], []
         for tw in TWS:
             a, sa = sw["dip"][tw]; src = {"ab": a, "sa": sa, "con": sw["dcon"]}

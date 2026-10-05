@@ -16,3 +16,19 @@ The NYCU library login needs the user's password and CAPTCHA, so open legal copi
 
 Change made: "self-modeling [40] and goal babbling [41] learn body models by directed exploration" became
 "self-modeling [40] learns a body model, and goal babbling [41] an inverse kinematic model, by directed exploration."
+
+## Third round (2026-10-05): full text through NYCU access (user's Chrome)
+
+| Key | Full text | Result |
+|---|---|---|
+| rolf2010 | IEEE Xplore (NYCU) | Goal babbling learns inverse kinematics directly. The reworded sentence is correct. |
+| mckay2022 | ScienceDirect (NYCU) | "No significant effect of reduced feedback frequency at any time point". SUPPORTED. |
+| sullivan2008 | Oxford Academic (NYCU) | Children with reduced feedback were less accurate (p=.017) and less consistent at 24-h retention. SUPPORTED. |
+| salmoni1984 | EBSCO (NYCU), 32 pp. | p.1: KR "acts as guidance ... degrading learning if it is given too frequently". p.10: learners "come to rely on it". SUPPORTED (both sentences). |
+| schmidt1989 | EBSCO (NYCU) | Summary length was inversely related to retention error and detrimental in acquisition. SUPPORTED. |
+| schmidt1992 | author's lab PDF (bjorklab.psych.ucla.edu) | p.209: learning vs performance. p.213: frequent feedback "comes to be a part of the task", so performance is disrupted in retention when it is removed. SUPPORTED (all three sentences). |
+| buekers1992 | Sage 403, not in the NYCU subscription | Full abstract on the publisher page: erroneous KR. SUPPORTED. |
+| cangelosi2015 | print only (Yangming campus) | Field overview citation. Specific claims are carried by [dearden2005], [oudeyer2007]. |
+| winstein1994 | print only (Hsinchu closed stacks) | Abstract: "poorest retention". SUPPORTED. |
+
+No claim was contradicted by a full text.
